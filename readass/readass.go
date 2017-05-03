@@ -7,21 +7,25 @@ import (
 	"strconv"
 )
 
-type Ass struct { 
+//The main struct for a .ass subtitle file. 
+type Ass struct {
+	//Script info portion
 	ScriptInfo struct {
 		Header string
 		Body Scriptinfo
 	}
+	//Aegisub project garbage portion
 	PGarbage struct {
 		Header string
 		Body Projectgarbage
 	}
-
+	//Styles portion
 	Styles struct {
 		Header string
 		Format string
 		Body []Style
 	}
+	//Events which are usually subtitles or commented out lines. 
 	Events struct {
 		Header string
 		Format string
@@ -29,6 +33,7 @@ type Ass struct {
 	}
 }
 
+//Info for the script. 
 type Scriptinfo struct { 
 	Title string
 	ScriptType string
@@ -39,6 +44,9 @@ type Scriptinfo struct {
 	PlayResY int
 }
 
+//Aegisub Project Garbage
+//Generally useless, untill it suddenly isn't.
+//Players will not care about this, this section is only here for compatability. 
 type Projectgarbage struct { 
 	AudioFile string
 	VideoFile string
@@ -50,6 +58,7 @@ type Projectgarbage struct {
 	VideoPos int
 }
 
+//A script can have multiple styles.
 type Style struct {
 	Format string
 	Name string
@@ -77,6 +86,7 @@ type Style struct {
 	Encoding int
 }
 
+//A script will definitely have multiple events. 
 type Event struct { 
 	Format string
 	Layer int
@@ -123,6 +133,8 @@ func intit(in string)(out int) {
 	return
 }
 
+
+//Loads the .ass file and parses out the various possible valid lines. 
 func Loadass(v *Ass, filepath string) {
 	f, err := os.Open(filepath)
 	if err != nil {
@@ -175,7 +187,10 @@ func Loadass(v *Ass, filepath string) {
 	}
 }
 
-
+//Creates the event, takes a full .ass line par the Comment/Dialogue portion, and the event type as an argument.
+//For example `Dialogue: 0,0:03:20.10,0:03:21.36,Default,,0,0,0,,` would parse to
+//in = `0,0:03:20.10,0:03:21.36,Default,,0,0,0,`
+//etype = Dialogue
 func Createevent(in string, etype string) *Event{
 	split := strings.Split(in, ",")
 	return &Event {
@@ -192,7 +207,8 @@ func Createevent(in string, etype string) *Event{
 		Text: split[9],
 	}
 }
-
+//Takes a full .ass style line as an argument.
+//Similar to Createevent, except Styles don't have multiple Formats, so we only take the format-less style string. 
 func Createstyle(in string) *Style{
 	split := strings.Split(in, ",")
 	return &Style {
@@ -223,6 +239,7 @@ func Createstyle(in string) *Style{
 	}
 }
 
+//Sets default headers for the various fields. 
 func Setheaders(v *Ass) {
 	v.ScriptInfo.Header = "[Script Info]"
 	v.PGarbage.Header = "[Aegisub Project Garbage]"
@@ -233,6 +250,7 @@ func Setheaders(v *Ass) {
 		
 }
 
+//Takes file path as argument. 
 func ParseAss(filename string) *Ass{
 	v := &Ass{}
 	Setheaders(v)
