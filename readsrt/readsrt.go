@@ -45,7 +45,8 @@ func LoadSrt(v *SubRip, filepath string) {
 		i, err := strconv.Atoi(line)
 		if err == nil && z.id == 0 {
 			z.id = int(i)
-		} else if strings.Contains(line, "-->")  {
+		//A bit more jackassery, because if z.start and z.end are set, then welp.
+		} else if strings.Contains(line, "-->") && z.start == "" && z.end == ""  {
 			split := strings.Split(line, "-->")
 			z.start = split[0]
 			z.end = split[1]
@@ -56,6 +57,8 @@ func LoadSrt(v *SubRip, filepath string) {
 			v.subtitle.content = append(v.subtitle.content, *z)
 			z = &Subtitle{}
 		} else {
+			//At some point, we need to start actually returning errors.
+			//Wouldn't that be nice?
 			fmt.Println("Error parsing .srt. Stray newline?")
 		}
 			
