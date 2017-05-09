@@ -1,4 +1,4 @@
-package readsrt
+package srt
 import (
 	"os"
 	"fmt"
