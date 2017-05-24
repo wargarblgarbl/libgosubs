@@ -2,6 +2,8 @@ package ass
 import (
 	"os"
 	"fmt"
+	"strconv"
+	"strings"
 )
 
 func WriteAss(v *Ass, outpath string) {
@@ -17,17 +19,17 @@ func WriteAss(v *Ass, outpath string) {
 	outout = append(outout,  "WrapStyle: "+v.ScriptInfo.Body.WarpStyle )
 	outout = append(outout,  "ScaledBorderAndShadow: "+v.ScriptInfo.Body.SBaShadow )
 	outout = append(outout,  "YCbCr Matrix: "+v.ScriptInfo.Body.YCbCrMatrix )
-	outout = append(outout,  "PlayResX: "+v.ScriptInfo.Body.PlayResX)
-	outout = append(outout,  "PlayResY: "+v.ScriptInfo.Body.PlayResY)
+	outout = append(outout,  "PlayResX: "+strconv.Itoa(v.ScriptInfo.Body.PlayResX))
+	outout = append(outout,  "PlayResY: "+strconv.Itoa(v.ScriptInfo.Body.PlayResY))
 	outout = append(outout, v.PGarbage.Header)
 	outout = append(outout,  "Audio File: "+v.PGarbage.Body.AudioFile )
 	outout = append(outout,  "Video File: "+v.PGarbage.Body.VideoFile )
-	outout = append(outout,  "Video AR Mode: "+v.PGarbage.Body.VideoARMode )
-	outout = append(outout,  "Video AR Value: "+v.PGarbage.Body.VideoARValue)
-	outout = append(outout,  "Video Zoom Percent: "+v.PGarbage.Body.VideoZoomPercent )
-	outout = append(outout,  "Scroll Position: "+v.PGarbage.Body.ScrollPosition )
-	outout = append(outout,  "Active Line: "+v.PGarbage.Body.ActiveLine )
-	outout = append(outout,  "Video Position: "+v.PGarbage.Body.VideoPos )
+	outout = append(outout,  "Video AR Mode: "+v.PGarbage.Body.VideoARMode)
+	outout = append(outout,  "Video AR Value: "+strconv.FormatFloat(v.PGarbage.Body.VideoARValue, 'E', -1, 64))
+	outout = append(outout,  "Video Zoom Percent: "+strconv.FormatFloat(v.PGarbage.Body.VideoZoomPercent, 'E', -1, 64) )
+	outout = append(outout,  "Scroll Position: "+strconv.Itoa(v.PGarbage.Body.ScrollPosition) )
+	outout = append(outout,  "Active Line: "+strconv.Itoa(v.PGarbage.Body.ActiveLine) )
+	outout = append(outout,  "Video Position: "+strconv.Itoa(v.PGarbage.Body.VideoPos) )
 	outout = append(outout, v.Styles.Header)
 	outout = append(outout, v.Styles.Format)
 	var astyle string
@@ -48,7 +50,7 @@ func WriteAss(v *Ass, outpath string) {
 		outout = append(outout, anevent)
 		anevent = ""
 	}
-	fmt.Fprintf(f, "%", string(outout))
+	fmt.Fprintf(f, "%", strings.Join(outout, ""))
 
 
 
