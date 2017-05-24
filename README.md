@@ -1,2 +1,2 @@
 # libgosubs
-A golang library to read (and eventually write?) subtitles
+A (dumb) golang library to read and write subtitles
