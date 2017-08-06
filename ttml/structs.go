@@ -84,17 +84,17 @@ type WTt struct {
 				TtmTitle string `xml:"ttm:title"`
 			} `xml:"metadata"`
 			Styling struct {
-				Style []style `xml:"style"`
+				Style []Style `xml:"style"`
 			} `xml:"styling"`
 			Layout struct {
-				Region []region `xml:"region"`
+				Region []Region `xml:"region"`
 			} `xml:"layout"`
 		} `xml:"head"`
 		Body struct {
 			Region string `xml:"region,attr"`
 			Style string `xml:"style,attr"`
 			Div struct {
-				P []subtitle `xml:"p"`
+				P []Subtitle `xml:"p"`
 			} `xml:"div"`
 		} `xml:"body"`
 }
