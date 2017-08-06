@@ -68,8 +68,33 @@ type Subtitle struct {
 }
 
 
-//Writring structs go here.
+//Writing struct starts here. Uses the same sub-objects as the Tt struct. .
 
-type Wtt struct {
-
+type WTt struct {
+		Xmlns string `xml:"xmlns,attr"`
+		XmlnsTtp string `xml:"xmlns:ttp,attr"`
+		XmlnsTts string `xml:"xmlns:tts,attr"`
+		XmlnsTtm string `xml:"xmlns:ttm,attr"`
+		XmlnsXML string `xml:"xmlns:xml,attr"`
+		TtpTimeBase string `xml:"ttp:timeBase,attr"`
+		TtpFrameRate string `xml:"ttp:frameRate,attr"`
+		XMLLang string `xml:"xml:lang,attr"`
+		Head struct {
+			Metadata struct {
+				TtmTitle string `xml:"ttm:title"`
+			} `xml:"metadata"`
+			Styling struct {
+				Style []style `xml:"style"`
+			} `xml:"styling"`
+			Layout struct {
+				Region []region `xml:"region"`
+			} `xml:"layout"`
+		} `xml:"head"`
+		Body struct {
+			Region string `xml:"region,attr"`
+			Style string `xml:"style,attr"`
+			Div struct {
+				P []subtitle `xml:"p"`
+			} `xml:"div"`
+		} `xml:"body"`
 }
