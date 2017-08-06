@@ -58,7 +58,7 @@ type Style struct {
 	Fontsize int
 	PrimaryColour string
 	SecondaryColour string
-	OUtlineColour string
+	OutlineColour string
 	Backcolour string
 	Bold int
 	Italic int

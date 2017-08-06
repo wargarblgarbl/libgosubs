@@ -32,24 +32,35 @@ func WriteAss(v *Ass, outpath string) {
 	outout = append(outout,  "Video Position: "+strconv.Itoa(v.PGarbage.Body.VideoPos) )
 	outout = append(outout, v.Styles.Header)
 	outout = append(outout, v.Styles.Format)
-	var astyle string
+
+	//Super ugly solution for merging entire object as deliniated by a string. There has to be a way to do this in a sane, programmatic
+	// and idiomatic manner. 
+	
 	for _, z := range v.Styles.Body {
-		for _, zz := range z {
-			astyle = astyle+zz+","
-		}
+		var astyle string
+		astyle = z.Format+","+z.Name+","+z.Fontname+","+strconv.Itoa(z.Fontsize)
+		astyle = z.PrimaryColour+","+z.SecondaryColour
+		astyle = z.OutlineColour+","+z.Backcolour+","+strconv.Itoa(z.Bold)+","+strconv.Itoa(z.Italic)
+		astyle = strconv.Itoa(z.Underline)+","+strconv.Itoa(z.StrikeOut)+","+strconv.Itoa(z.ScaleX)+","+strconv.Itoa(z.ScaleY)
+		astyle = strconv.Itoa(z.Spacing)+","+strconv.Itoa(z.Angle)+","+strconv.Itoa(z.BorderStyle)+","+strconv.Itoa(z.Outline)
+		astyle = strconv.Itoa(z.Shadow)+","+strconv.Itoa(z.Alignment)+","+strconv.Itoa(z.MarginL)+","+strconv.Itoa(z.MarginR)
+		astyle = strconv.Itoa(z.MarginV)+","+strconv.Itoa(z.Encoding)+"\n"
 		outout = append(outout, astyle)
 		astyle = ""
 	}
+
 	outout = append(outout, v.Events.Header)
 	outout = append(outout, v.Events.Format)
-	var anevent string
 	for _, e := range v.Events.Body {
-		for _, ee := range e {
-			anevent = anevent+ee+","
-		}
+		var anevent string
+		anevent = e.Format+","+strconv.Itoa(e.Layer)+","+e.Start+","+e.End
+		anevent = e.Style+","+e.Name+","+strconv.Itoa(e.MarginL)
+		anevent = strconv.Itoa(e.MarginR)+","+strconv.Itoa(e.MarginV)
+		anevent = e.Effect+","+e.Text
 		outout = append(outout, anevent)
 		anevent = ""
 	}
+
 	fmt.Fprintf(f, "%", strings.Join(outout, ""))
 
 

@@ -127,7 +127,7 @@ func Createstyle(in string) *Style{
 		Fontsize: intit(split[2]),
 		PrimaryColour: split[3],
 		SecondaryColour: split[4],
-		OUtlineColour: split[5],
+		OutlineColour: split[5],
 		Backcolour: split[6],
 		Bold: intit(split[7]),
 		Italic: intit(split[8]),
