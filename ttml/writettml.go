@@ -31,4 +31,3 @@ func WriteTtml (v *WTt, outpath string) {
 		panic(trr)
 	}
 }
-y
