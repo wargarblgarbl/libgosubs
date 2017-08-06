@@ -4,6 +4,7 @@ import (
 	"os"
 	"fmt"
 	"encoding/xml"
+	"io/ioutil"
 )
 
 
