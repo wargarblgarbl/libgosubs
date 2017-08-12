@@ -113,7 +113,7 @@ func Createevent(in string, etype string) *Event{
 		MarginR: intit(split[6]),
 		MarginV: intit(split[7]),
 		Effect: split[8],
-		Text: split[9],
+		Text: strings.Join(split[9:], ","),
 	}
 }
 //Takes a full .ass style line as an argument.
