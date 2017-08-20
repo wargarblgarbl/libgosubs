@@ -37,6 +37,7 @@ type Tt struct {
 		} `xml:"div"`
 	} `xml:"body"`
 }
+
 //Region struct
 type Region struct {
 	XMLID           string `xml:"id,attr"`

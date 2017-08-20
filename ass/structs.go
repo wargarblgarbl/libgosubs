@@ -37,7 +37,6 @@ type Scriptinfo struct {
 	PlayResY    int
 }
 
-
 //Aegisub Project Garbage
 //Generally useless, until it suddenly isn't.
 //Players will not care about this, this section is only here for compatibility.

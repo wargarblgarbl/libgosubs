@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 )
+
 //WriteSrt takes a SubRip object and the path to which to write the file as a string
 func WriteSrt(v *SubRip, outpath string) {
 	f, err := os.Create(outpath)

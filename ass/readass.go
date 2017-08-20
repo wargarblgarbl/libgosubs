@@ -8,7 +8,6 @@ import (
 	"strings"
 )
 
-
 func floatit(in string) (out float64) {
 	if in == "" {
 		out = 0.0
