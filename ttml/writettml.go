@@ -1,16 +1,13 @@
 package ttml
 
 import (
-	"os"
-	"fmt"
 	"encoding/xml"
+	"fmt"
 	"io/ioutil"
+	"os"
 )
 
-
-
-
-func WriteTtml (v *WTt, outpath string) {
+func WriteTtml(v *WTt, outpath string) {
 	f, err := os.Create(outpath)
 	if err != nil {
 		fmt.Println(err)
@@ -21,7 +18,7 @@ func WriteTtml (v *WTt, outpath string) {
 		panic(err)
 	}
 	bytehead := []byte(xml.Header)
-	out = append(bytehead, out ...)
+	out = append(bytehead, out...)
 	f, arr := os.Create(outpath)
 	if arr != nil {
 		panic(arr)

@@ -1,9 +1,10 @@
 package ttml
+
 import (
-	"fmt"
 	"encoding/xml"
-	"os"
+	"fmt"
 	"io/ioutil"
+	"os"
 )
 
 func LoadTtml(v *Tt, filepath string) {
@@ -19,10 +20,8 @@ func LoadTtml(v *Tt, filepath string) {
 	xml.Unmarshal(bytef, &v)
 }
 
-func ParseTtml(filename string) *Tt{
+func ParseTtml(filename string) *Tt {
 	v := &Tt{}
 	LoadTtml(v, filename)
 	return v
 }
-
-

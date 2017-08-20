@@ -3,8 +3,8 @@ package srt
 import (
 	"fmt"
 	"os"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 func WriteSrt(v *SubRip, outpath string) {
@@ -19,6 +19,5 @@ func WriteSrt(v *SubRip, outpath string) {
 		a := strconv.Itoa(z.id) + "\n" + z.start + "-->" + z.end + "\n" + lines + "\n"
 		outout = append(outout, a)
 	}
-	fmt.Fprintf(f, "%", strings.Join(outout, " " ))
+	fmt.Fprintf(f, "%", strings.Join(outout, " "))
 }
-
