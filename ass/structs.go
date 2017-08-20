@@ -37,8 +37,8 @@ type Scriptinfo struct {
 }
 
 //Aegisub Project Garbage
-//Generally useless, untill it suddenly isn't.
-//Players will not care about this, this section is only here for compatability.
+//Generally useless, until it suddenly isn't.
+//Players will not care about this, this section is only here for compatibility.
 type Projectgarbage struct {
 	AudioFile        string
 	VideoFile        string
