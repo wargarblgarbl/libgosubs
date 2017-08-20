@@ -52,7 +52,7 @@ func LoadSrt(v *SubRip, filepath string) {
 	defer f.Close()
 }
 
-//Generic loader for srt files. Takes the path of the file being opened as the argument.
+//ParseSrt is the loader for srt files. Takes the path of the file being opened as the argument.
 func ParseSrt(filename string) *SubRip {
 	v := &SubRip{}
 	LoadSrt(v, filename)

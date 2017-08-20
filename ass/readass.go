@@ -146,6 +146,7 @@ func Createstyle(in string) *Style {
 }
 
 //Sets default headers for the various fields.
+//These are static and should not change in ass v4
 func Setheaders(v *Ass) {
 	v.ScriptInfo.Header = "[Script Info]"
 	v.PGarbage.Header = "[Aegisub Project Garbage]"
@@ -153,7 +154,6 @@ func Setheaders(v *Ass) {
 	v.Events.Header = "[Events]"
 	v.Styles.Format = "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding"
 	v.Events.Format = "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"
-
 }
 
 //Takes file path as argument.

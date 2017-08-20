@@ -65,7 +65,7 @@ type Subtitle struct {
 }
 
 //WTt is the Write TTML struct.
-//Primary reason for using a seperate struct is Go's strange handling of complex XML parameters
+//Primary reason for using a separate struct is Go's strange handling of complex XML parameters
 type WTt struct {
 	Xmlns        string `xml:"xmlns,attr"`
 	XmlnsTtp     string `xml:"xmlns:ttp,attr"`

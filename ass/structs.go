@@ -1,6 +1,6 @@
 package ass
 
-//The main struct for a .ass subtitle file.
+//Aas is the main struct for an .ass subtitle file.
 type Ass struct {
 	//Script info portion
 	ScriptInfo struct {
@@ -37,7 +37,7 @@ type Scriptinfo struct {
 	PlayResY    int
 }
 
-//Aegisub Project Garbage
+//Projectgarbage
 //Generally useless, until it suddenly isn't.
 //Players will not care about this, this section is only here for compatibility.
 type Projectgarbage struct {
@@ -51,6 +51,7 @@ type Projectgarbage struct {
 	VideoPos         int
 }
 
+//Style is a struct for the ass styles
 //A script can have multiple styles.
 type Style struct {
 	Format          string
@@ -79,6 +80,8 @@ type Style struct {
 	Encoding        int
 }
 
+//Event contains all of the required variables for an event.
+//Start and End are required, everything else is optional
 //A script will definitely have multiple events.
 type Event struct {
 	Format  string
