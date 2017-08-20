@@ -2,20 +2,18 @@ package srt
 
 import (
 	"bufio"
+	"errors"
 	"os"
 	"strconv"
 	"strings"
-	"errors"
 )
-
-
 
 //LoadSRT loads the provided file into the given object.
 //It fixes the \ufeff problem that some parsers have.
-func LoadSrt(v *SubRip, filepath string)(error) {
+func LoadSrt(v *SubRip, filepath string) error {
 	f, err := os.Open(filepath)
 	if err != nil {
-		return(err)
+		return (err)
 	}
 	scanner := bufio.NewScanner(f)
 	z := &Subtitle{}

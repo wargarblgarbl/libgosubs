@@ -2,8 +2,8 @@ package ass
 
 import (
 	"bufio"
-//	"fmt"
-//	"errors"
+	//	"fmt"
+	//	"errors"
 	"os"
 	"strconv"
 	"strings"
@@ -41,7 +41,7 @@ func intit(in string) (out int) {
 }
 
 //Loads the .ass file and parses out the various possible valid lines.
-func Loadass(v *Ass, filepath string) (error) {
+func Loadass(v *Ass, filepath string) error {
 	f, err := os.Open(filepath)
 	if err != nil {
 		return err
@@ -100,7 +100,7 @@ func Loadass(v *Ass, filepath string) (error) {
 func Createevent(in string, etype string) *Event {
 	split := strings.Split(in, ",")
 	return &Event{
-		Format:  etype+": ",
+		Format:  etype + ": ",
 		Layer:   intit(split[0]),
 		Start:   split[1],
 		End:     split[2],

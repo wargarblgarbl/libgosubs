@@ -41,11 +41,11 @@ func WriteAss(v *Ass, outpath string) {
 	for _, z := range v.Styles.Body {
 
 		/*
-		 "Format: Name, Fontname, Fontsize,
-		PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold,
-		Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle,
-		Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding"
-*/
+			 "Format: Name, Fontname, Fontsize,
+			PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold,
+			Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle,
+			Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding"
+		*/
 		var astyle []string
 		//astyle = append(astyle, z.Format)
 		astyle = append(astyle, z.Name)
@@ -80,7 +80,7 @@ func WriteAss(v *Ass, outpath string) {
 	for _, e := range v.Events.Body {
 		var anevent []string
 		/*
-		Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+			Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 		*/
 		anevent = append(anevent, strconv.Itoa(e.Layer))
 		anevent = append(anevent, e.Start)
