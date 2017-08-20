@@ -7,7 +7,6 @@ import (
 func TestLoadAndWrite(t *testing.T) {
   test := ParseTtml("../testfiles/sample.ttml")
   a := WTt(*test)
-
   WriteTtml(&a, "../testfiles/sample2.ttml")
   test2 := ParseTtml("../testfiles/sample2.ttml")
   if cmp.Equal(test, test2) == false {
