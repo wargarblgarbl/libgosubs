@@ -47,7 +47,6 @@ func WriteAss(v *Ass, outpath string) {
 		astyle = strconv.Itoa(z.Shadow) + "," + strconv.Itoa(z.Alignment) + "," + strconv.Itoa(z.MarginL) + "," + strconv.Itoa(z.MarginR)
 		astyle = strconv.Itoa(z.MarginV) + "," + strconv.Itoa(z.Encoding) + "\n"
 		outout = append(outout, astyle)
-		astyle = ""
 	}
 
 	outout = append(outout, v.Events.Header)
@@ -59,7 +58,6 @@ func WriteAss(v *Ass, outpath string) {
 		anevent = strconv.Itoa(e.MarginR) + "," + strconv.Itoa(e.MarginV)
 		anevent = e.Effect + "," + e.Text
 		outout = append(outout, anevent)
-		anevent = ""
 	}
 
 	fmt.Fprintf(f, "%", strings.Join(outout, ""))
