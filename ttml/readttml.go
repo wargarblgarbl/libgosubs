@@ -21,6 +21,7 @@ func LoadTtml(v *Tt, filepath string) {
 	xml.Unmarshal(bytef, &v)
 }
 
+//Generic loader for TTML files
 func ParseTtml(filename string) *Tt {
 	v := &Tt{}
 	LoadTtml(v, filename)
