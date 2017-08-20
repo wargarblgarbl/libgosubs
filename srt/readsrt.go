@@ -26,15 +26,15 @@ func LoadSrt(v *SubRip, filepath string) {
 		}
 		//The most jackass SRT parser ever. Appends to an object.
 		i, err := strconv.Atoi(line)
-		if err == nil && z.id == 0 {
-			z.id = int(i)
-			//A bit more jackassery, because if z.start and z.end are set, then welp.
-		} else if strings.Contains(line, "-->") && z.start == "" && z.end == "" {
+		if err == nil && z.Id == 0 {
+			z.Id = int(i)
+			//A bit more jackassery, because if z.Start and z.End are set, then welp.
+		} else if strings.Contains(line, "-->") && z.Start == "" && z.End == "" {
 			split := strings.Split(line, "-->")
-			z.start = split[0]
-			z.end = split[1]
-		} else if line != "" && z.start != "" && z.end != "" && z.id != 0 {
-			z.line = append(z.line, line)
+			z.Start = split[0]
+			z.End = split[1]
+		} else if line != "" && z.Start != "" && z.End != "" && z.Id != 0 {
+			z.Line = append(z.Line, line)
 		} else if line == "" {
 			//Clear object on newline
 			v.subtitle.content = append(v.subtitle.content, *z)

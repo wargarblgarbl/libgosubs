@@ -15,8 +15,8 @@ func WriteSrt(v *SubRip, outpath string) {
 	fmt.Println(f)
 	var outout []string
 	for _, z := range v.subtitle.content {
-		lines := strings.Join(z.line, "\n")
-		a := strconv.Itoa(z.id) + "\n" + z.start + "-->" + z.end + "\n" + lines + "\n"
+		lines := strings.Join(z.Line, "\n")
+		a := strconv.Itoa(z.Id) + "\n" + z.Start + "-->" + z.End + "\n" + lines + "\n"
 		outout = append(outout, a)
 	}
 	fmt.Fprintf(f, "%", strings.Join(outout, " "))
