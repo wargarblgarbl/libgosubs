@@ -2,19 +2,20 @@ package srt
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 	"strings"
+	"errors"
 )
+
+
 
 //LoadSRT loads the provided file into the given object.
 //It fixes the \ufeff problem that some parsers have.
-func LoadSrt(v *SubRip, filepath string) {
+func LoadSrt(v *SubRip, filepath string)(error) {
 	f, err := os.Open(filepath)
 	if err != nil {
-		fmt.Println("Cannot read file", filepath)
-		os.Exit(1)
+		return(err)
 	}
 	scanner := bufio.NewScanner(f)
 	z := &Subtitle{}
@@ -31,30 +32,38 @@ func LoadSrt(v *SubRip, filepath string) {
 			//A bit more jackassery, because if z.Start and z.End are set, then welp.
 		} else if strings.Contains(line, "-->") && z.Start == "" && z.End == "" {
 			split := strings.Split(line, "-->")
-			z.Start = split[0]
-			z.End = split[1]
+
+			//Oh hey, we occasionally can pick up extra whitespace, let's strip it
+			z.Start = strings.Replace(split[0], " ", "", -1)
+			z.End = strings.Replace(split[1], " ", "", -1)
 		} else if line != "" && z.Start != "" && z.End != "" && z.Id != 0 {
 			z.Line = append(z.Line, line)
 		} else if line == "" {
 			//Clear object on newline
-			v.subtitle.content = append(v.subtitle.content, *z)
+			if z.Start != "" && z.End != "" && z.Line != nil {
+				v.Subtitle.Content = append(v.Subtitle.Content, *z)
+			}
 			z = &Subtitle{}
 		} else {
 			//At some point, we need to start actually returning errors.
 			//Wouldn't that be nice?
-			fmt.Println("Error parsing .srt. Stray newline?")
+			return errors.New("Error parsing .srt. Stray newline?")
 		}
 
 	}
 	//Since the last subtitle often won't have a newline, append everything and clear object one last time
-	v.subtitle.content = append(v.subtitle.content, *z)
+	v.Subtitle.Content = append(v.Subtitle.Content, *z)
 	z = &Subtitle{}
 	defer f.Close()
+	return nil
 }
 
 //ParseSrt is the loader for srt files. Takes the path of the file being opened as the argument.
 func ParseSrt(filename string) *SubRip {
 	v := &SubRip{}
-	LoadSrt(v, filename)
+	err := LoadSrt(v, filename)
+	if err != nil {
+		panic(err)
+	}
 	return v
 }

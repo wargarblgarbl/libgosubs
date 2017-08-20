@@ -2,7 +2,8 @@ package ass
 
 import (
 	"bufio"
-	"fmt"
+//	"fmt"
+//	"errors"
 	"os"
 	"strconv"
 	"strings"
@@ -40,11 +41,10 @@ func intit(in string) (out int) {
 }
 
 //Loads the .ass file and parses out the various possible valid lines.
-func Loadass(v *Ass, filepath string) {
+func Loadass(v *Ass, filepath string) (error) {
 	f, err := os.Open(filepath)
 	if err != nil {
-		fmt.Println("Cannot read file")
-		os.Exit(1)
+		return err
 	}
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
@@ -90,6 +90,7 @@ func Loadass(v *Ass, filepath string) {
 			v.Events.Body = append(v.Events.Body, *Createevent(suffix, prefix))
 		}
 	}
+	return nil
 }
 
 //Creates the event, takes a full .ass line par the Comment/Dialogue portion, and the event type as an argument.
@@ -99,7 +100,7 @@ func Loadass(v *Ass, filepath string) {
 func Createevent(in string, etype string) *Event {
 	split := strings.Split(in, ",")
 	return &Event{
-		Format:  etype,
+		Format:  etype+": ",
 		Layer:   intit(split[0]),
 		Start:   split[1],
 		End:     split[2],
@@ -160,6 +161,9 @@ func Setheaders(v *Ass) {
 func ParseAss(filename string) *Ass {
 	v := &Ass{}
 	Setheaders(v)
-	Loadass(v, filename)
+	err := Loadass(v, filename)
+	if err != nil {
+		panic(err)
+	}
 	return v
 }

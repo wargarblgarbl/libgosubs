@@ -80,17 +80,43 @@ type WTt struct {
 			TtmTitle string `xml:"ttm:title"`
 		} `xml:"metadata"`
 		Styling struct {
-			Style []Style `xml:"style"`
+			Style []Ostyle `xml:"style"`
 		} `xml:"styling"`
 		Layout struct {
-			Region []Region `xml:"region"`
+			Region []Oregion `xml:"region"`
 		} `xml:"layout"`
 	} `xml:"head"`
 	Body struct {
 		Region string `xml:"region,attr"`
 		Style  string `xml:"style,attr"`
 		Div    struct {
-			P []Subtitle `xml:"p"`
+			P []Osubtitle `xml:"p"`
 		} `xml:"div"`
 	} `xml:"body"`
+}
+
+
+type Oregion struct {
+	XMLID string `xml:"xml:id,attr"`
+	TtsDisplayAlign string `xml:"tts:displayAlign,attr"`
+	TtsExtent string `xml:"tts:extend,attr"`
+	TtsOrigin string `xml:"tts:origin,attr"`
+
+}
+
+type Ostyle struct {
+	XMLID string `xml:"xml:id,attr"`
+	TtsTextAlign string `xml:"tts:textAlign,attr"`
+	TtsFontFamily string `xml:"tts:fontFamily,attr"`
+	TtsFontSize string `xml:"tts:fontSize,attr"`
+}
+
+
+type Osubtitle struct {
+	Id string `xml:"xml:id,attr"`
+	Begin string `xml:"begin,attr"`
+	End string `xml:"end,attr"`
+	Style string `xml:"style,attr,omitempty"`
+	Region string `xml:"region,attr,omitempty"`
+	Text string `xml:",innerxml"`
 }

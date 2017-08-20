@@ -2,28 +2,31 @@ package ttml
 
 import (
 	"encoding/xml"
-	"fmt"
 	"io/ioutil"
 	"os"
+	"errors"
 )
 
 //LoadTtml loads the TTML file from a given filepath
-func LoadTtml(v *Tt, filepath string) {
+func LoadTtml(v *Tt, filepath string)(error) {
 	f, err := os.Open(filepath)
 	if err != nil {
-		fmt.Println("Cannot read file", filepath)
-		os.Exit(1)
-	}
+		return errors.New("Cannot read file :"+filepath)
+}
 	bytef, berr := ioutil.ReadAll(f)
 	if berr != nil {
-		fmt.Println("error decoding")
+		return errors.New("error decoding")
 	}
 	xml.Unmarshal(bytef, &v)
+	return nil
 }
 
 //ParseTtml is a generic loader for TTML files
 func ParseTtml(filename string) *Tt {
 	v := &Tt{}
-	LoadTtml(v, filename)
+	err := LoadTtml(v, filename)
+	if err != nil {
+		panic(err)
+	}
 	return v
 }
