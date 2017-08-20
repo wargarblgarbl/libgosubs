@@ -2,7 +2,6 @@ package srt
 
 //Subrip is the overall file descriptor.
 //It provides a container for us to dump subtitles into.
-
 type SubRip struct {
 	Subtitle struct {
 		Content []Subtitle

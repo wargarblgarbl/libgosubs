@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+//LoadTtml loads the TTML file from a given filepath
 func LoadTtml(v *Tt, filepath string) {
 	f, err := os.Open(filepath)
 	if err != nil {

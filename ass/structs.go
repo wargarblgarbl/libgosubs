@@ -1,5 +1,6 @@
 package ass
 
+//The main struct for a .ass subtitle file.
 type Ass struct {
 	//Script info portion
 	ScriptInfo struct {
@@ -25,7 +26,7 @@ type Ass struct {
 	}
 }
 
-//Info for the script.
+//ScriptInfo outlines the script information for the format
 type Scriptinfo struct {
 	Title       string
 	ScriptType  string
@@ -35,6 +36,7 @@ type Scriptinfo struct {
 	PlayResX    int
 	PlayResY    int
 }
+
 
 //Aegisub Project Garbage
 //Generally useless, until it suddenly isn't.

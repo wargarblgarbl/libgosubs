@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+//WriteAss takes an Ass object and the path to where to write the file
 func WriteAss(v *Ass, outpath string) {
 	f, err := os.Create(outpath)
 	if err != nil {

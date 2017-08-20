@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+//WriteTtml writes the TTML file
 func WriteTtml(v *WTt, outpath string) {
 	f, err := os.Create(outpath)
 	if err != nil {

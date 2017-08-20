@@ -8,7 +8,6 @@ import (
 	"strings"
 )
 
-//The main struct for a .ass subtitle file.
 
 func floatit(in string) (out float64) {
 	if in == "" {

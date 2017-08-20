@@ -8,6 +8,7 @@ This is going to be hell down the line when we have to encode things, because xm
 with them. ARGH.
 */
 
+//Tt read struct - outlines the file on read
 type Tt struct {
 	Xmlns        string `xml:"xmlns,attr"`
 	XmlnsTtp     string `xml:"ttp,attr"`
@@ -36,7 +37,7 @@ type Tt struct {
 		} `xml:"div"`
 	} `xml:"body"`
 }
-
+//Region struct
 type Region struct {
 	XMLID           string `xml:"id,attr"`
 	TtsDisplayAlign string `xml:"displayAlign,attr"`
@@ -44,6 +45,7 @@ type Region struct {
 	TtsOrigin       string `xml:"origin,attr"`
 }
 
+//Style struct
 type Style struct {
 	XMLID         string `xml:"id,attr"`
 	TtsTextAlign  string `xml:"textAlign,attr"`
@@ -51,6 +53,7 @@ type Style struct {
 	TtsFontSize   string `xml:"fontSize,attr"`
 }
 
+//Subtitle - struct for subtitles
 type Subtitle struct {
 	Id     string `xml:"id,attr"`
 	Begin  string `xml:"begin,attr"`
@@ -60,8 +63,8 @@ type Subtitle struct {
 	Text   string `xml:",innerxml"`
 }
 
-//Writing struct starts here. Uses the same sub-objects as the Tt struct. .
-
+//WTt is the Write TTML struct.
+//Primary reason for using a seperate struct is Go's strange handling of complex XML parameters
 type WTt struct {
 	Xmlns        string `xml:"xmlns,attr"`
 	XmlnsTtp     string `xml:"xmlns:ttp,attr"`
