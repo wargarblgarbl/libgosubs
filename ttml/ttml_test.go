@@ -25,7 +25,7 @@ func convertsub(i *Subtitle)(Wsubtitle){
 func convertstruct(i *Tt)(*WTt) {
 	a := &WTt{}
 	a.Xmlns = i.Xmlns
-	a.XmlnsTtp =  i.XmlnsTtp   
+	a.XmlnsTtp =  i.XmlnsTtp
 	a.XmlnsTts =    i.XmlnsTts
 	a.XmlnsTtm =    i.XmlnsTtm
 	a.XmlnsXML   =  i.XmlnsXML
@@ -43,7 +43,7 @@ func convertstruct(i *Tt)(*WTt) {
 		region = append(region, convertregion(&e))
 	}
 	a.Head.Layout.Region = region
-	
+
 	a.Body.Region = i.Body.Region
 	a.Body.Style = i.Body.Style
 	wsubtitle := []Wsubtitle{}
@@ -52,15 +52,74 @@ func convertstruct(i *Tt)(*WTt) {
 	}
 	a.Body.Div.P = wsubtitle
 	return a
-	
+
 }
 
+//Test our testing functions
+func Testlocal(t *testing.T) {
+	a := &Tt{}
+	b := &WTt{}
+	c := &Region{}
+	d := &Style{}
+	e := &Subtitle{}
+	f := &Wregion{}
+	g := &Wsubtitle{}
+	h := &Wstyle{}
+
+	if convertstruct(a) != b {
+		t.Errorf("convertstruct test function failed")
+	}
+
+	if convertregion(c) != *f {
+		t.Errorf("convertregion test function failed")
+
+	}
+	if convertsub(e) != *g {
+		t.Errorf("convertsub test function failed")
+
+	}
+	if convertstyle(d) != *h {
+		t.Errorf("convertstyle test function failed")
+
+	}
+	// Output: matches
+}
+
+//Test loading and writing
 func TestLoadAndWrite(t *testing.T) {
-	test := ParseTtml("../testfiles/sample.ttml")
+	err2, test  := ParseTtml("../testfiles/sample.ttml")
+	if err2 != nil {
+		t.Errorf("WriteTtml returned an unexpected error")
+	}
+
 	a := convertstruct(test)
 	WriteTtml(a, "../testfiles/sample2.ttml")
-	test2 := ParseTtml("../testfiles/sample2.ttml")
+	err, test2 := ParseTtml("../testfiles/sample2.ttml")
+	if err != nil {
+		t.Errorf("WriteTtml returned an unexpected error")
+	}
 	if cmp.Equal(test, test2) == false {
 		t.Errorf("Read structs of input and output do not match", cmp.Diff(test, test2))
+	}
+	// Output: written and
+}
+
+
+//Test bad input
+func TestFilepath(t *testing.T) {
+	v := &Tt{}
+	err := LoadTtml(v, "bunkpath")
+	if err == nil {
+		t.Errorf("LoadTTml does not return error")
+	}
+}
+
+//Test writing errors
+func TestWrite(t *testing.T) {
+	v := &WTt{}
+ err := WriteTtml(v, "")
+// t.Errorf(err)
+	if err == nil {
+		t.Errorf("WriteTtml does not return error")
 	}
 }
