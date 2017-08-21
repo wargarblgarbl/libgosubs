@@ -1,5 +1,9 @@
 package ttml
 
+import (
+	"encoding/xml"
+)
+
 /*
 Not the same struct used in gass2ttml. Reasons?
 Golang apparently doesn't like prefixed xml namespaces, and xml.Unmarshal() ignores them.
@@ -9,7 +13,8 @@ with them. ARGH.
 */
 
 //Tt read struct - outlines the file on read
-type Tt struct {
+type Tt struct  {
+	XMLName      xml.Name  `xml:"tt"`
 	Xmlns        string `xml:"xmlns,attr"`
 	XmlnsTtp     string `xml:"ttp,attr"`
 	XmlnsTts     string `xml:"tts,attr"`
@@ -36,7 +41,7 @@ type Tt struct {
 			P []Subtitle `xml:"p"`
 		} `xml:"div"`
 	} `xml:"body"`
-}
+} 
 
 //Region struct
 type Region struct {
@@ -62,35 +67,4 @@ type Subtitle struct {
 	Style  string `xml:"style,attr,omitempty"`
 	Region string `xml:"region,attr,omitempty"`
 	Text   string `xml:",innerxml"`
-}
-
-//WTt is the Write TTML struct.
-//Primary reason for using a separate struct is Go's strange handling of complex XML parameters
-type WTt struct {
-	Xmlns        string `xml:"xmlns,attr"`
-	XmlnsTtp     string `xml:"xmlns:ttp,attr"`
-	XmlnsTts     string `xml:"xmlns:tts,attr"`
-	XmlnsTtm     string `xml:"xmlns:ttm,attr"`
-	XmlnsXML     string `xml:"xmlns:xml,attr"`
-	TtpTimeBase  string `xml:"ttp:timeBase,attr"`
-	TtpFrameRate string `xml:"ttp:frameRate,attr"`
-	XMLLang      string `xml:"xml:lang,attr"`
-	Head         struct {
-		Metadata struct {
-			TtmTitle string `xml:"ttm:title"`
-		} `xml:"metadata"`
-		Styling struct {
-			Style []Style `xml:"style"`
-		} `xml:"styling"`
-		Layout struct {
-			Region []Region `xml:"region"`
-		} `xml:"layout"`
-	} `xml:"head"`
-	Body struct {
-		Region string `xml:"region,attr"`
-		Style  string `xml:"style,attr"`
-		Div    struct {
-			P []Subtitle `xml:"p"`
-		} `xml:"div"`
-	} `xml:"body"`
 }
