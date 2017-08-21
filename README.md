@@ -18,7 +18,6 @@ TTML is somewhat complex to implement in Go due to the way that Go handles XML n
 
 ## libgosubs project garbage
 
---------
 # Documentation
 Available via Godoc
 
@@ -28,7 +27,6 @@ Available via Godoc
 |[![GoDoc](https://godoc.org/github.com/wargarblgarbl/libgosubs/srt?status.svg)](https://godoc.org/github.com/wargarblgarbl/libgosubs/srt) | SRT |
 |[![GoDoc](https://godoc.org/github.com/wargarblgarbl/libgosubs/ttml?status.svg)](https://godoc.org/github.com/wargarblgarbl/libgosubs/ttml) | TTML  |
 
---------
 # Test Coverage
 
 | Coverage | Format | 
@@ -37,4 +35,5 @@ Available via Godoc
 |![cover.run go](https://cover.run/go/github.com/wargarblgarbl/libgosubs/srt.svg)| SRT| 
 |![cover.run go](https://cover.run/go/github.com/wargarblgarbl/libgosubs/ttml.svg)| TTML| 
 
-
+# Other
+ [![Go Report Card](https://goreportcard.com/badge/github.com/wargarblgarbl/libgosubs)](https://goreportcard.com/report/github.com/wargarblgarbl/libgosubs)
