@@ -8,10 +8,10 @@ import (
 )
 
 //WriteSrt takes a SubRip object and the path to which to write the file as a string
-func WriteSrt(v *SubRip, outpath string) {
+func WriteSrt(v *SubRip, outpath string) error {
 	f, err := os.Create(outpath)
 	if err != nil {
-		fmt.Println(err)
+		return err
 	}
 	var outout []string
 	for _, z := range v.Subtitle.Content {
@@ -21,6 +21,7 @@ func WriteSrt(v *SubRip, outpath string) {
 	}
 	_, err = fmt.Fprint(f, strings.Join(outout, "\n\n"))
 	if err != nil {
-		panic(err)
+		return err
 	}
+	return nil
 }

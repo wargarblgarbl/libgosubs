@@ -158,12 +158,12 @@ func Setheaders(v *Ass) {
 }
 
 //Takes file path as argument.
-func ParseAss(filename string) *Ass {
+func ParseAss(filename string) (error, *Ass) {
 	v := &Ass{}
 	Setheaders(v)
 	err := Loadass(v, filename)
 	if err != nil {
-		panic(err)
+		return err, v
 	}
-	return v
+	return err, v
 }

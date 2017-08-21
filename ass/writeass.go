@@ -8,10 +8,10 @@ import (
 )
 
 //WriteAss takes an Ass object and the path to where to write the file
-func WriteAss(v *Ass, outpath string) {
+func WriteAss(v *Ass, outpath string) error {
 	f, err := os.Create(outpath)
 	if err != nil {
-		fmt.Println(err)
+		return(err)
 	}
 	var outout []string
 	// Write header
@@ -97,5 +97,5 @@ func WriteAss(v *Ass, outpath string) {
 	}
 
 	fmt.Fprint(f, "", strings.Join(outout, "\n")+"\n")
-
+	return nil
 }

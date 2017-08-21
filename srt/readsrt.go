@@ -57,11 +57,11 @@ func LoadSrt(v *SubRip, filepath string) error {
 }
 
 //ParseSrt is the loader for srt files. Takes the path of the file being opened as the argument.
-func ParseSrt(filename string) *SubRip {
+func ParseSrt(filename string) (error, *SubRip) {
 	v := &SubRip{}
 	err := LoadSrt(v, filename)
 	if err != nil {
-		panic(err)
+		return err, v 
 	}
-	return v
+	return nil, v
 }
