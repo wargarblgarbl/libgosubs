@@ -6,32 +6,32 @@ import (
 )
 
 //Convert region struct
-func convertregion(i *Region)(Wregion) {
+func convertregion(i *Region) Wregion {
 	a := Wregion(*i)
 	return a
 }
 
-func convertstyle(i *Style)(Wstyle) {
+func convertstyle(i *Style) Wstyle {
 	a := Wstyle(*i)
 	return a
 
 }
 
-func convertsub(i *Subtitle)(Wsubtitle){
+func convertsub(i *Subtitle) Wsubtitle {
 	a := Wsubtitle(*i)
 	return a
 }
 
-func convertstruct(i *Tt)(*WTt) {
+func convertstruct(i *Tt) *WTt {
 	a := &WTt{}
 	a.Xmlns = i.Xmlns
-	a.XmlnsTtp =  i.XmlnsTtp   
-	a.XmlnsTts =    i.XmlnsTts
-	a.XmlnsTtm =    i.XmlnsTtm
-	a.XmlnsXML   =  i.XmlnsXML
-	a.TtpTimeBase  = i.TtpTimeBase
+	a.XmlnsTtp = i.XmlnsTtp
+	a.XmlnsTts = i.XmlnsTts
+	a.XmlnsTtm = i.XmlnsTtm
+	a.XmlnsXML = i.XmlnsXML
+	a.TtpTimeBase = i.TtpTimeBase
 	a.TtpFrameRate = i.TtpFrameRate
-	a.XMLLang      = i.XMLLang
+	a.XMLLang = i.XMLLang
 	a.Head.Metadata.TtmTitle = i.Head.Metadata.TtmTitle
 	style := []Wstyle{}
 	for _, e := range i.Head.Styling.Style {
@@ -43,7 +43,7 @@ func convertstruct(i *Tt)(*WTt) {
 		region = append(region, convertregion(&e))
 	}
 	a.Head.Layout.Region = region
-	
+
 	a.Body.Region = i.Body.Region
 	a.Body.Style = i.Body.Style
 	wsubtitle := []Wsubtitle{}
@@ -52,7 +52,7 @@ func convertstruct(i *Tt)(*WTt) {
 	}
 	a.Body.Div.P = wsubtitle
 	return a
-	
+
 }
 
 func TestLoadAndWrite(t *testing.T) {
