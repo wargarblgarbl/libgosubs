@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-//LoadSRT loads the provided file into the given object.
+//LoadSrt loads the provided file into the given object.
 //It fixes the \ufeff problem that some parsers have.
 func LoadSrt(v *SubRip, filepath string) error {
 	f, err := os.Open(filepath)
