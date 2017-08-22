@@ -8,6 +8,12 @@ import (
 	"strings"
 )
 
+func appendsub(start string, end string, line []string, z *Subtitle, v *SubRip) {
+	if start != "" && end != "" && line != nil {
+		v.Subtitle.Content = append(v.Subtitle.Content, *z)
+	}
+}
+
 //LoadSrt loads the provided file into the given object.
 //It fixes the \ufeff problem that some parsers have.
 func LoadSrt(v *SubRip, filepath string) error {
@@ -39,9 +45,11 @@ func LoadSrt(v *SubRip, filepath string) error {
 		} else if line == "" {
 			//Clear object on newline
 			//But only append non-empty subtitles
-			if z.Start != "" && z.End != "" && z.Line != nil {
+			/*if z.Start != "" && z.End != "" && z.Line != nil {
 				v.Subtitle.Content = append(v.Subtitle.Content, *z)
 			}
+			*/
+			appendsub(z.Start, z.End, z.Line, z, v)
 			z = &Subtitle{}
 		} else {
 			//At some point, we need to start actually returning errors.
