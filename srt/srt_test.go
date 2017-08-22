@@ -39,3 +39,15 @@ func TestLoadAndWrite(t *testing.T) {
 		t.Errorf("Read structs of input and output do not match" + diff)
 	}
 }
+
+func TestBadFileInput(t *testing.T) {
+	_, err := ParseSrt("")
+	if err == nil {
+		t.Errorf("ParseAss did not error correctly on nul string input")
+	}
+	obj := &SubRip{}
+	err2 := WriteSrt(obj, "")
+	if err2 == nil {
+		t.Errorf("WriteAss did not error correctly on nul string input")
+	}
+}

@@ -112,14 +112,13 @@ func TestFilepath(t *testing.T) {
 	if err == nil {
 		t.Errorf("LoadTTml does not return error")
 	}
-}
-
-//Test writing errors
-func TestWrite(t *testing.T) {
 	v := &WTt{}
 	err := WriteTtml(v, "")
 	// t.Errorf(err)
 	if err == nil {
 		t.Errorf("WriteTtml does not return error")
 	}
+
+	_ := WriteTtml(v, "")
+
 }
