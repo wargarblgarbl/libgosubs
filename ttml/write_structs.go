@@ -7,15 +7,15 @@ import (
 //WTt is the Write TTML struct.
 //Primary reason for using a separate struct is Go's strange handling of complex XML parameters
 type WTt struct {
-	XMLName      xml.Name  `xml:"tt"`
-	Xmlns        string `xml:"xmlns,attr"`
-	XmlnsTtp     string `xml:"xmlns:ttp,attr"`
-	XmlnsTts     string `xml:"xmlns:tts,attr"`
-	XmlnsTtm     string `xml:"xmlns:ttm,attr"`
-	XmlnsXML     string `xml:"xmlns:xml,attr"`
-	TtpTimeBase  string `xml:"ttp:timeBase,attr"`
-	TtpFrameRate string `xml:"ttp:frameRate,attr"`
-	XMLLang      string `xml:"xml:lang,attr"`
+	XMLName      xml.Name `xml:"tt"`
+	Xmlns        string   `xml:"xmlns,attr"`
+	XmlnsTtp     string   `xml:"xmlns:ttp,attr"`
+	XmlnsTts     string   `xml:"xmlns:tts,attr"`
+	XmlnsTtm     string   `xml:"xmlns:ttm,attr"`
+	XmlnsXML     string   `xml:"xmlns:xml,attr"`
+	TtpTimeBase  string   `xml:"ttp:timeBase,attr"`
+	TtpFrameRate string   `xml:"ttp:frameRate,attr"`
+	XMLLang      string   `xml:"xml:lang,attr"`
 	Head         struct {
 		Metadata struct {
 			TtmTitle string `xml:"ttm:title"`
@@ -38,27 +38,26 @@ type WTt struct {
 
 //Wregion - Region write struct
 type Wregion struct {
-	XMLID string `xml:"xml:id,attr"`
+	XMLID           string `xml:"xml:id,attr"`
 	TtsDisplayAlign string `xml:"tts:displayAlign,attr"`
-	TtsExtent string `xml:"tts:extend,attr"`
-	TtsOrigin string `xml:"tts:origin,attr"`
-	
+	TtsExtent       string `xml:"tts:extend,attr"`
+	TtsOrigin       string `xml:"tts:origin,attr"`
 }
 
 //Wstyle - Style write struct
 type Wstyle struct {
-	XMLID string `xml:"xml:id,attr"`
-	TtsTextAlign string `xml:"tts:textAlign,attr"`
+	XMLID         string `xml:"xml:id,attr"`
+	TtsTextAlign  string `xml:"tts:textAlign,attr"`
 	TtsFontFamily string `xml:"tts:fontFamily,attr"`
-	TtsFontSize string `xml:"tts:fontSize,attr"`
+	TtsFontSize   string `xml:"tts:fontSize,attr"`
 }
 
 //Wsubtitle - Subtitle write struct
 type Wsubtitle struct {
-	Id string `xml:"xml:id,attr"`
-	Begin string `xml:"begin,attr"`
-	End string `xml:"end,attr"`
-	Style string `xml:"style,attr,omitempty"`
+	Id     string `xml:"xml:id,attr"`
+	Begin  string `xml:"begin,attr"`
+	End    string `xml:"end,attr"`
+	Style  string `xml:"style,attr,omitempty"`
 	Region string `xml:"region,attr,omitempty"`
-	Text string `xml:",innerxml"`
+	Text   string `xml:",innerxml"`
 }

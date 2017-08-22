@@ -11,7 +11,7 @@ import (
 func WriteAss(v *Ass, outpath string) error {
 	f, err := os.Create(outpath)
 	if err != nil {
-		return(err)
+		return (err)
 	}
 	var outout []string
 	// Write header

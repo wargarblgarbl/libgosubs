@@ -61,7 +61,7 @@ func ParseSrt(filename string) (error, *SubRip) {
 	v := &SubRip{}
 	err := LoadSrt(v, filename)
 	if err != nil {
-		return err, v 
+		return err, v
 	}
 	return nil, v
 }

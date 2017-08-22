@@ -13,16 +13,16 @@ with them. ARGH.
 */
 
 //Tt read struct - outlines the file on read
-type Tt struct  {
-	XMLName      xml.Name  `xml:"tt"`
-	Xmlns        string `xml:"xmlns,attr"`
-	XmlnsTtp     string `xml:"ttp,attr"`
-	XmlnsTts     string `xml:"tts,attr"`
-	XmlnsTtm     string `xml:"ttm,attr"`
-	XmlnsXML     string `xml:"xml,attr"`
-	TtpTimeBase  string `xml:"timeBase,attr"`
-	TtpFrameRate string `xml:"frameRate,attr"`
-	XMLLang      string `xml:"lang,attr"`
+type Tt struct {
+	XMLName      xml.Name `xml:"tt"`
+	Xmlns        string   `xml:"xmlns,attr"`
+	XmlnsTtp     string   `xml:"ttp,attr"`
+	XmlnsTts     string   `xml:"tts,attr"`
+	XmlnsTtm     string   `xml:"ttm,attr"`
+	XmlnsXML     string   `xml:"xml,attr"`
+	TtpTimeBase  string   `xml:"timeBase,attr"`
+	TtpFrameRate string   `xml:"frameRate,attr"`
+	XMLLang      string   `xml:"lang,attr"`
 	Head         struct {
 		Metadata struct {
 			TtmTitle string `xml:"title"`
@@ -41,7 +41,7 @@ type Tt struct  {
 			P []Subtitle `xml:"p"`
 		} `xml:"div"`
 	} `xml:"body"`
-} 
+}
 
 //Region struct
 type Region struct {
