@@ -14,6 +14,16 @@ func appendsub(start string, end string, line []string, z *Subtitle, v *SubRip) 
 	}
 }
 
+//CreateSubtitle creates a subtitle object.
+func CreateSubtitle(id int, start string, end string, text []string) *Subtitle {
+	return &Subtitle{
+		Id:    id,
+		Start: start,
+		End:   end,
+		Line:  text,
+	}
+}
+
 //LoadSrt loads the provided file into the given object.
 //It fixes the \ufeff problem that some parsers have.
 func LoadSrt(v *SubRip, filepath string) error {
@@ -45,10 +55,6 @@ func LoadSrt(v *SubRip, filepath string) error {
 		} else if line == "" {
 			//Clear object on newline
 			//But only append non-empty subtitles
-			/*if z.Start != "" && z.End != "" && z.Line != nil {
-				v.Subtitle.Content = append(v.Subtitle.Content, *z)
-			}
-			*/
 			appendsub(z.Start, z.End, z.Line, z, v)
 			z = &Subtitle{}
 		} else {

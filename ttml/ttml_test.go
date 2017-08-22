@@ -69,18 +69,14 @@ func TestAlllocal(t *testing.T) {
 	if cmp.Equal(convertstruct(a), b) {
 		//t.Errorf("convertstruct test function failed")
 	}
-
 	if convertregion(c) != *f {
 		t.Errorf("convertregion test function failed")
-
 	}
 	if convertsub(e) != *g {
 		t.Errorf("convertsub test function failed")
-
 	}
 	if convertstyle(d) != *h {
 		t.Errorf("convertstyle test function failed")
-
 	}
 	// Output: matches
 }
@@ -102,7 +98,6 @@ func TestLoadAndWrite(t *testing.T) {
 		diff := cmp.Diff(test, test2)
 		t.Errorf("Read structs of input and output do not match" + diff)
 	}
-	// Output: written and
 }
 
 //Test bad input

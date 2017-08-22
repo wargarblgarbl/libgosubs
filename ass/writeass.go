@@ -23,7 +23,7 @@ func WriteAss(v *Ass, outpath string) error {
 	outout = append(outout, "YCbCr Matrix: "+v.ScriptInfo.Body.YCbCrMatrix)
 	outout = append(outout, "PlayResX: "+strconv.Itoa(v.ScriptInfo.Body.PlayResX))
 	outout = append(outout, "PlayResY: "+strconv.Itoa(v.ScriptInfo.Body.PlayResY))
-	outout = append(outout, v.PGarbage.Header)
+	outout = append(outout, "\n"+v.PGarbage.Header)
 	outout = append(outout, "Audio File: "+v.PGarbage.Body.AudioFile)
 	outout = append(outout, "Video File: "+v.PGarbage.Body.VideoFile)
 	outout = append(outout, "Video AR Mode: "+v.PGarbage.Body.VideoARMode)
@@ -32,7 +32,7 @@ func WriteAss(v *Ass, outpath string) error {
 	outout = append(outout, "Scroll Position: "+strconv.Itoa(v.PGarbage.Body.ScrollPosition))
 	outout = append(outout, "Active Line: "+strconv.Itoa(v.PGarbage.Body.ActiveLine))
 	outout = append(outout, "Video Position: "+strconv.Itoa(v.PGarbage.Body.VideoPos))
-	outout = append(outout, v.Styles.Header)
+	outout = append(outout, "\n"+v.Styles.Header)
 	outout = append(outout, v.Styles.Format)
 
 	//Super ugly solution for merging entire object as deliniated by a string. There has to be a way to do this in a sane, programmatic
