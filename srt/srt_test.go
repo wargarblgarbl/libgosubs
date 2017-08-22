@@ -36,6 +36,6 @@ func TestLoadAndWrite(t *testing.T) {
 
 	if cmp.Equal(test, test2) != true {
 		diff := cmp.Diff(test, test2)
-		t.Errorf("Read structs of input and output do not match"+diff)
+		t.Errorf("Read structs of input and output do not match" + diff)
 	}
 }

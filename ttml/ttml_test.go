@@ -66,8 +66,6 @@ func TestAlllocal(t *testing.T) {
 	g := &Wsubtitle{}
 	h := &Wstyle{}
 
-
-
 	if cmp.Equal(convertstruct(a), b) {
 		//t.Errorf("convertstruct test function failed")
 	}
@@ -102,7 +100,7 @@ func TestLoadAndWrite(t *testing.T) {
 	}
 	if cmp.Equal(test, test2) == false {
 		diff := cmp.Diff(test, test2)
-		t.Errorf("Read structs of input and output do not match"+diff)
+		t.Errorf("Read structs of input and output do not match" + diff)
 	}
 	// Output: written and
 }
