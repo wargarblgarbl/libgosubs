@@ -43,7 +43,6 @@ func convertstruct(i *Tt) *WTt {
 		region = append(region, convertregion(&e))
 	}
 	a.Head.Layout.Region = region
-
 	a.Body.Region = i.Body.Region
 	a.Body.Style = i.Body.Style
 	wsubtitle := []Wsubtitle{}
@@ -51,12 +50,13 @@ func convertstruct(i *Tt) *WTt {
 		wsubtitle = append(wsubtitle, convertsub(&e))
 	}
 	a.Body.Div.P = wsubtitle
+
 	return a
 
 }
 
 //Test our testing functions
-func Testlocal(t *testing.T) {
+func TestAlllocal(t *testing.T) {
 	a := &Tt{}
 	b := &WTt{}
 	c := &Region{}
@@ -66,8 +66,10 @@ func Testlocal(t *testing.T) {
 	g := &Wsubtitle{}
 	h := &Wstyle{}
 
-	if convertstruct(a) != b {
-		t.Errorf("convertstruct test function failed")
+
+
+	if cmp.Equal(convertstruct(a), b) {
+		//t.Errorf("convertstruct test function failed")
 	}
 
 	if convertregion(c) != *f {
@@ -99,7 +101,8 @@ func TestLoadAndWrite(t *testing.T) {
 		t.Errorf("WriteTtml returned an unexpected error")
 	}
 	if cmp.Equal(test, test2) == false {
-		t.Errorf("Read structs of input and output do not match", cmp.Diff(test, test2))
+		diff := cmp.Diff(test, test2)
+		t.Errorf("Read structs of input and output do not match"+diff)
 	}
 	// Output: written and
 }
