@@ -9,7 +9,7 @@ import (
 )
 
 func TestLoadAndWrite(t *testing.T) {
-	err, test := ParseAss("../testfiles/sample.ass")
+	test, err := ParseAss("../testfiles/sample.ass")
 	if err != nil {
 		t.Errorf("Unexpected error")
 	}
@@ -18,7 +18,7 @@ func TestLoadAndWrite(t *testing.T) {
 		t.Errorf("Unexpected error")
 	}
 
-	err3, test2 := ParseAss("../testfiles/sample2.ass")
+	test2, err3 := ParseAss("../testfiles/sample2.ass")
 	if err3 != nil {
 		t.Errorf("Unexpected error")
 	}

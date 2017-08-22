@@ -6,7 +6,7 @@ import (
 )
 
 func TestSRTIDs(t *testing.T) {
-	err, test := ParseSrt("../testfiles/sample.srt")
+	test, err := ParseSrt("../testfiles/sample.srt")
 	if err != nil {
 		t.Errorf("Unexpected error")
 	}
@@ -19,7 +19,7 @@ func TestSRTIDs(t *testing.T) {
 }
 
 func TestLoadAndWrite(t *testing.T) {
-	err, test := ParseSrt("../testfiles/sample.srt")
+	test, err := ParseSrt("../testfiles/sample.srt")
 	if err != nil {
 		t.Errorf("Unexpected error")
 	}
@@ -29,7 +29,7 @@ func TestLoadAndWrite(t *testing.T) {
 		t.Errorf("Unexpected error")
 	}
 
-	err3, test2 := ParseSrt("../testfiles/sample2.srt")
+	test2, err3 := ParseSrt("../testfiles/sample2.srt")
 	if err3 != nil {
 		t.Errorf("Unexpected error")
 	}

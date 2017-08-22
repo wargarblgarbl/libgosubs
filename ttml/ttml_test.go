@@ -87,14 +87,14 @@ func Testlocal(t *testing.T) {
 
 //Test loading and writing
 func TestLoadAndWrite(t *testing.T) {
-	err2, test := ParseTtml("../testfiles/sample.ttml")
+	test, err2 := ParseTtml("../testfiles/sample.ttml")
 	if err2 != nil {
 		t.Errorf("WriteTtml returned an unexpected error")
 	}
 
 	a := convertstruct(test)
 	WriteTtml(a, "../testfiles/sample2.ttml")
-	err, test2 := ParseTtml("../testfiles/sample2.ttml")
+	test2, err := ParseTtml("../testfiles/sample2.ttml")
 	if err != nil {
 		t.Errorf("WriteTtml returned an unexpected error")
 	}
