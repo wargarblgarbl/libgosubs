@@ -19,9 +19,6 @@ func WriteSrt(v *SubRip, outpath string) error {
 		a := strconv.Itoa(z.Id) + "\n" + z.Start + " --> " + z.End + "\n" + lines
 		outout = append(outout, a)
 	}
-	_, err = fmt.Fprint(f, strings.Join(outout, "\n\n"))
-	if err != nil {
-		return err
-	}
+	fmt.Fprint(f, strings.Join(outout, "\n\n"))
 	return nil
 }
