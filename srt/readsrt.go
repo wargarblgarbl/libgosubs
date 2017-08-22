@@ -38,6 +38,7 @@ func LoadSrt(v *SubRip, filepath string) error {
 			z.Line = append(z.Line, line)
 		} else if line == "" {
 			//Clear object on newline
+			//But only append non-empty subtitles
 			if z.Start != "" && z.End != "" && z.Line != nil {
 				v.Subtitle.Content = append(v.Subtitle.Content, *z)
 			}
