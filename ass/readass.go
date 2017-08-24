@@ -101,7 +101,7 @@ func Loadass(v *Ass, filepath string) error {
 func Createevent(in string, etype string) *Event {
 	split := strings.Split(in, ",")
 	return &Event{
-		Format:  etype + ": ",
+		Format:  etype,
 		Layer:   intit(split[0]),
 		Start:   split[1],
 		End:     split[2],
@@ -120,7 +120,7 @@ func Createevent(in string, etype string) *Event {
 func Createstyle(in string) *Style {
 	split := strings.Split(in, ",")
 	return &Style{
-		Format:          "Style: ",
+		Format:          "Style",
 		Name:            split[0],
 		Fontname:        split[1],
 		Fontsize:        intit(split[2]),

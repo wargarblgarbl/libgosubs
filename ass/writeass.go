@@ -71,7 +71,7 @@ func WriteAss(v *Ass, outpath string) error {
 		astyle = append(astyle, strconv.Itoa(z.MarginR))
 		astyle = append(astyle, strconv.Itoa(z.MarginV))
 		astyle = append(astyle, strconv.Itoa(z.Encoding))
-		outout = append(outout, z.Format+strings.Join(astyle, ",")+"\n")
+		outout = append(outout, z.Format+": "+strings.Join(astyle, ",")+"\n")
 
 	}
 
@@ -93,7 +93,7 @@ func WriteAss(v *Ass, outpath string) error {
 		anevent = append(anevent, e.Effect)
 		anevent = append(anevent, e.Text)
 
-		outout = append(outout, e.Format+strings.Join(anevent, ","))
+		outout = append(outout, e.Format+": "+strings.Join(anevent, ","))
 	}
 
 	fmt.Fprint(f, "", strings.Join(outout, "\n")+"\n")
