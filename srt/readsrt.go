@@ -8,7 +8,23 @@ import (
 	"strings"
 )
 
-//LoadSRT loads the provided file into the given object.
+func appendsub(start string, end string, line []string, z *Subtitle, v *SubRip) {
+	if start != "" && end != "" && line != nil {
+		v.Subtitle.Content = append(v.Subtitle.Content, *z)
+	}
+}
+
+//CreateSubtitle creates a subtitle object.
+func CreateSubtitle(id int, start string, end string, text []string) *Subtitle {
+	return &Subtitle{
+		Id:    id,
+		Start: start,
+		End:   end,
+		Line:  text,
+	}
+}
+
+//LoadSrt loads the provided file into the given object.
 //It fixes the \ufeff problem that some parsers have.
 func LoadSrt(v *SubRip, filepath string) error {
 	f, err := os.Open(filepath)
@@ -38,9 +54,8 @@ func LoadSrt(v *SubRip, filepath string) error {
 			z.Line = append(z.Line, line)
 		} else if line == "" {
 			//Clear object on newline
-			if z.Start != "" && z.End != "" && z.Line != nil {
-				v.Subtitle.Content = append(v.Subtitle.Content, *z)
-			}
+			//But only append non-empty subtitles
+			appendsub(z.Start, z.End, z.Line, z, v)
 			z = &Subtitle{}
 		} else {
 			//At some point, we need to start actually returning errors.
@@ -57,11 +72,11 @@ func LoadSrt(v *SubRip, filepath string) error {
 }
 
 //ParseSrt is the loader for srt files. Takes the path of the file being opened as the argument.
-func ParseSrt(filename string) *SubRip {
+func ParseSrt(filename string) (*SubRip, error) {
 	v := &SubRip{}
 	err := LoadSrt(v, filename)
 	if err != nil {
-		panic(err)
+		return v, err
 	}
-	return v
+	return v, nil
 }

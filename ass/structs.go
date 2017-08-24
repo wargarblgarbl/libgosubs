@@ -1,6 +1,6 @@
 package ass
 
-//Aas is the main struct for an .ass subtitle file.
+//Ass is the main struct for an .ass subtitle file.
 type Ass struct {
 	//Script info portion
 	ScriptInfo struct {
@@ -26,7 +26,7 @@ type Ass struct {
 	}
 }
 
-//ScriptInfo outlines the script information for the format
+//Scriptinfo outlines the script information for the format
 type Scriptinfo struct {
 	Title       string
 	ScriptType  string
@@ -37,7 +37,7 @@ type Scriptinfo struct {
 	PlayResY    int
 }
 
-//Projectgarbage
+//Projectgarbage - aegisub project garbage section
 //Generally useless, until it suddenly isn't.
 //Players will not care about this, this section is only here for compatibility.
 type Projectgarbage struct {

@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+//Helper functions
 func floatit(in string) (out float64) {
 	if in == "" {
 		out = 0.0
@@ -40,7 +41,7 @@ func intit(in string) (out int) {
 	return
 }
 
-//Loads the .ass file and parses out the various possible valid lines.
+//Loadass loads the .ass file and parses out the various possible valid lines.
 func Loadass(v *Ass, filepath string) error {
 	f, err := os.Open(filepath)
 	if err != nil {
@@ -93,7 +94,7 @@ func Loadass(v *Ass, filepath string) error {
 	return nil
 }
 
-//Creates the event, takes a full .ass line par the Comment/Dialogue portion, and the event type as an argument.
+//Createevent creates the event, takes a full .ass line par the Comment/Dialogue portion, and the event type as an argument.
 //For example `Dialogue: 0,0:03:20.10,0:03:21.36,Default,,0,0,0,,` would parse to
 //in = `0,0:03:20.10,0:03:21.36,Default,,0,0,0,`
 //etype = Dialogue
@@ -114,7 +115,7 @@ func Createevent(in string, etype string) *Event {
 	}
 }
 
-//Takes a full .ass style line as an argument.
+//Createstyle - creates a style. Takes a full .ass style line as an argument.
 //Similar to Createevent, except Styles don't have multiple Formats, so we only take the format-less style string.
 func Createstyle(in string) *Style {
 	split := strings.Split(in, ",")
@@ -146,7 +147,7 @@ func Createstyle(in string) *Style {
 	}
 }
 
-//Sets default headers for the various fields.
+//Setheaders sets default headers for the various fields.
 //These are static and should not change in ass v4
 func Setheaders(v *Ass) {
 	v.ScriptInfo.Header = "[Script Info]"
@@ -157,13 +158,13 @@ func Setheaders(v *Ass) {
 	v.Events.Format = "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"
 }
 
-//Takes file path as argument.
-func ParseAss(filename string) *Ass {
+//ParseAss - Parses an .ass file to a structure
+func ParseAss(filename string) (*Ass, error) {
 	v := &Ass{}
 	Setheaders(v)
 	err := Loadass(v, filename)
 	if err != nil {
-		panic(err)
+		return v, err
 	}
-	return v
+	return v, nil
 }

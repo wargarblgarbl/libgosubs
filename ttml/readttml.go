@@ -22,11 +22,11 @@ func LoadTtml(v *Tt, filepath string) error {
 }
 
 //ParseTtml is a generic loader for TTML files
-func ParseTtml(filename string) *Tt {
+func ParseTtml(filename string) (*Tt, error) {
 	v := &Tt{}
 	err := LoadTtml(v, filename)
 	if err != nil {
-		panic(err)
+		return v, err
 	}
-	return v
+	return v, nil
 }
