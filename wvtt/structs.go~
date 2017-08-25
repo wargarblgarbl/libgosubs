@@ -1,0 +1,25 @@
+package webvtt
+
+type WebVtt struct {
+	Header string
+	Styles []Style
+	Subtitle struct {
+		Content []Subtitle
+	}
+}
+
+type Subtitle struct {
+	Note bool
+	Id    int
+	Start string
+	End   string
+	Pos []Position
+	Line  []string
+}
+
+type Position struct {
+	Pos: int
+	Align: string
+	Size: int
+}
+
