@@ -4,6 +4,9 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"fmt"
+	//"io"
+	//"io/ioutil"
 )
 
 func CreateSubtitle(note bool, cue string, start string, end string, text []string, pos Position) *Subtitle {
@@ -54,9 +57,9 @@ func intit(in string) (out int) {
 func parsetimecode(tc string)(start string, end string, pos bool){
 	pos = false
 	split := strings.Split(tc, " ")
-	start = split[0]
-	end = split[2]
-	if len(split) > 3 {
+ start = split[0]
+	 end = split[2]
+	if len(split) > 2 {
 		pos = true
 	}
 	return
@@ -111,16 +114,19 @@ func LoadWebVtt(v *WebVtt, filepath string) error {
 		return err
 	}
 	scanner := bufio.NewScanner(f)
+	//scanner.Split(bufio.ScanLines)
 	var file [][]string
-  	var lines []string
+	var lines []string
 	for scanner.Scan() {
-		if scanner.Text() != "" {
+		if scanner.Text() != ""   {
 			lines = append(lines, scanner.Text())
 		} else {
 			file = append(file, lines)
 			lines = nil
 		}
 	}
+	file = append(file, lines)
+	lines = nil
 	for _, i := range file {
 		parsed := checkline(i)
 		switch parsed {
@@ -142,6 +148,9 @@ func LoadWebVtt(v *WebVtt, filepath string) error {
 		}
 
 	}
+	fmt.Println(v)
+defer f.Close()
+
 	return nil
 }
 
