@@ -37,6 +37,8 @@ func CreateWebVtt(*[]Subtitle, *WebVtt) *WebVtt {
 
 	}
 }
+
+/*HELPER FUNCTIONS*/
 func intit(in string) (out int) {
 	if in == "" {
 		out = 0
@@ -65,7 +67,6 @@ func parsetimecode(tc string)(start string, end string, pos bool){
 
 func parsepos(tc string)(vertical string, line int, pos int, lpercent bool, align string, size int) {
 	split := strings.Split(tc, " ")
-	fmt.Println(split)
 	for _, a := range split {
 		b := strings.Split(a, ":")
 		switch b[0] {
@@ -108,39 +109,28 @@ func checkline(line []string)(out int) {
 	return
 }
 
-//func CreateSubtitle(note bool, id int, start string, end string, text []string, pos []Position) *Subtitle {
-//func parsepos(tc st(vertical string, line int, lpercent bool, pos int, align string, size int) {
-//func CreatePosition(vertical string, line int, pos int, lpercent bool,   align string, size int) *Position {
-
 func LoadWebVtt(v *WebVtt, filepath string) error {
 	f, err := os.Open(filepath)
 	if err != nil{
-		fmt.Println("whoops")
 		return err
 	}
 	scanner := bufio.NewScanner(f)
-	scanner.Split(bufio.ScanLines) 
   	var lines []string
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
 	}
-	
-	join := strings.Join(lines, "\n")
-	split := strings.Split(join, "\n\n")
+	split := strings.Split(strings.Join(lines, "\n"), "\n\n")
 	
 	for _, i := range split {
 		b := strings.Split(i, "\n")
 		parsed := checkline(b)
-
 		switch parsed {
 		case 0:
 			v.Header = strings.Join(b, "")
 		case 1:
 			var pos Position
-
 			v.Subtitle.Content = append(v.Subtitle.Content, *CreateSubtitle(true, "", "", "", b, pos))
 		case 2:
-			id :=  b[0]
 			if err != nil {
 				return err
 			}
@@ -149,10 +139,9 @@ func LoadWebVtt(v *WebVtt, filepath string) error {
 			if haspos {
 				pos = *CreatePosition(parsepos(b[1]))
 			}
-			v.Subtitle.Content = append(v.Subtitle.Content, *CreateSubtitle(false, id, start, end, b[2:], pos))
+			v.Subtitle.Content = append(v.Subtitle.Content, *CreateSubtitle(false, b[0], start, end, b[2:], pos))
 		}
 		
-		fmt.Println(parsed)
 	}
 	fmt.Println(v)
 	return nil
