@@ -2,17 +2,28 @@ package srt
 
 import (
 	"bufio"
-	"errors"
 	"os"
-	"strconv"
 	"strings"
+	"strconv"
 )
 
-func appendsub(start string, end string, line []string, z *Subtitle, v *SubRip) {
-	if start != "" && end != "" && line != nil {
-		v.Subtitle.Content = append(v.Subtitle.Content, *z)
-	}
+
+func parsetimecode(tc string)(start string, end string){
+	split := strings.Split(tc, " ")
+	start = split[0]
+	end = split[2]
+	return
 }
+
+func checkline(line []string)(isline bool) {
+	for _, i := range line {
+		if strings.Contains(i, "-->") {
+			isline = true
+		}
+	}
+	return
+}
+
 
 //CreateSubtitle creates a subtitle object.
 func CreateSubtitle(id int, start string, end string, text []string) *Subtitle {
@@ -28,49 +39,42 @@ func CreateSubtitle(id int, start string, end string, text []string) *Subtitle {
 //It fixes the \ufeff problem that some parsers have.
 func LoadSrt(v *SubRip, filepath string) error {
 	f, err := os.Open(filepath)
-	if err != nil {
-		return (err)
+	if err != nil{
+		return err
 	}
 	scanner := bufio.NewScanner(f)
-	z := &Subtitle{}
+	var file [][]string
+  var lines []string
+
 	for scanner.Scan() {
 		line := scanner.Text()
-		//Ufeff problem fix
-		if strings.HasPrefix(line, "\ufeff") {
-			line = strings.Replace(line, "\ufeff", "", -1)
-		}
-		//The most jackass SRT parser ever. Appends to an object.
-		i, err := strconv.Atoi(line)
-		if err == nil && z.Id == 0 {
-			z.Id = int(i)
-			//A bit more jackassery, because if z.Start and z.End are set, then welp.
-		} else if strings.Contains(line, "-->") && z.Start == "" && z.End == "" {
-			split := strings.Split(line, "-->")
-
-			//Oh hey, we occasionally can pick up extra whitespace, let's strip it
-			z.Start = strings.Replace(split[0], " ", "", -1)
-			z.End = strings.Replace(split[1], " ", "", -1)
-		} else if line != "" && z.Start != "" && z.End != "" && z.Id != 0 {
-			z.Line = append(z.Line, line)
-		} else if line == "" {
-			//Clear object on newline
-			//But only append non-empty subtitles
-			appendsub(z.Start, z.End, z.Line, z, v)
-			z = &Subtitle{}
+		if line != "" && line != "\ufeff"{
+			lines = append(lines, line)
 		} else {
-			//At some point, we need to start actually returning errors.
-			//Wouldn't that be nice?
-			return errors.New("Error parsing .srt. Stray newline?")
+			file = append(file, lines)
+			lines = nil
 		}
-
 	}
-	//Since the last subtitle often won't have a newline, append everything and clear object one last time
-	v.Subtitle.Content = append(v.Subtitle.Content, *z)
-	z = &Subtitle{}
-	defer f.Close()
+	file = append(file, lines)
+	lines = nil
+
+	for _, i := range file {
+		parsed := checkline(i)
+		if parsed {
+			if err != nil {
+				return err
+			}
+			id, err := strconv.Atoi(i[0])
+			if err != nil {
+				return err
+			}
+			start, end := parsetimecode(i[1])
+			v.Subtitle.Content = append(v.Subtitle.Content, *CreateSubtitle(id, start, end, i[2:]))
+		}
+	}
+
 	return nil
 }
-
 //ParseSrt is the loader for srt files. Takes the path of the file being opened as the argument.
 func ParseSrt(filename string) (*SubRip, error) {
 	v := &SubRip{}
