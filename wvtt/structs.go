@@ -30,6 +30,5 @@ type Position struct {
 	Size        int
 }
 
-
 type style struct {
 }
