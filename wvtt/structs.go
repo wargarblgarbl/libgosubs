@@ -10,15 +10,18 @@ type WebVtt struct {
 
 type Subtitle struct {
 	Note bool
-	Id    int
+	Cue    string
 	Start string
 	End   string
-	Position []Position
+	Position Position
 	Line  []string
 }
 
 type Position struct {
+	Vertical string
+	Line int
 	Position int
+	Linepercent bool
 	Align string
 	Size int
 }
