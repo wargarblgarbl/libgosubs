@@ -1,13 +1,9 @@
 package webvtt
 import (
 	"bufio"
-	//"errors"
 	"os"
 	"strconv"
 	"strings"
-	"fmt"
-//	"regexp"
-
 )
 
 func CreateSubtitle(note bool, cue string, start string, end string, text []string, pos Position) *Subtitle {
@@ -146,7 +142,6 @@ func LoadWebVtt(v *WebVtt, filepath string) error {
 		}
 
 	}
-	fmt.Println(v)
 	return nil
 }
 
