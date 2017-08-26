@@ -15,7 +15,7 @@ TTML is somewhat complex to implement in Go due to the way that Go handles XML n
 
 # updates
 - v0.5 released for ASS, SRT, and TTML
-- WebVTT read functionality implemented
+- experimental WebVTT read functionality implemented
 - SRT read functionality cleaned up.
 
 

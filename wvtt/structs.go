@@ -1,5 +1,6 @@
 package webvtt
 
+//WebVtt is the container struct for a WebVtt subtitle
 type WebVtt struct {
 	Header   string
 	Styles   []Style
@@ -8,6 +9,8 @@ type WebVtt struct {
 	}
 }
 
+//Subtitle is the struct that stores subtitles and notes for WebVtt.
+//The Note bool determins whether the Subtitle is actually a note or not.
 type Subtitle struct {
 	Note     bool
 	Cue      string
@@ -17,6 +20,7 @@ type Subtitle struct {
 	Line     []string
 }
 
+//Position is a struct that stores the positional data on a per-line level
 type Position struct {
 	Vertical    string
 	Line        int
@@ -26,5 +30,6 @@ type Position struct {
 	Size        int
 }
 
-type Style struct {
+
+type style struct {
 }

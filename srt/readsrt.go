@@ -54,8 +54,6 @@ func LoadSrt(v *SubRip, filepath string) error {
 		}
 	}
 	file = append(file, lines)
-	lines = nil
-
 	for _, i := range file {
 		parsed := checkline(i)
 		if parsed {

@@ -1,5 +1,4 @@
 package webvtt
-
 import (
 	"bufio"
 	"os"
@@ -10,24 +9,24 @@ import (
 //CreateSubtitle creates a VTT formatted subtitle
 func CreateSubtitle(note bool, cue string, start string, end string, text []string, pos Position) *Subtitle {
 	return &Subtitle{
-		Note:     note,
-		Cue:      cue,
-		Start:    start,
-		End:      end,
+		Note: note,
+		Cue:    cue,
+		Start: start,
+		End:   end,
 		Position: pos,
-		Line:     text,
+		Line:  text,
 	}
 }
 
 //CreatePosition creates a VTT subtiotle position
-func CreatePosition(vertical string, line int, pos int, lpercent bool, align string, size int) *Position {
+func CreatePosition(vertical string, line int, pos int, lpercent bool,  align string, size int) *Position {
 	return &Position{
-		Vertical:    vertical,
-		Line:        line,
-		Position:    pos,
+		Vertical: vertical,
+		Line: line,
+		Position: pos,
 		Linepercent: lpercent,
-		Align:       align,
-		Size:        size,
+		Align: align,
+		Size: size,
 	}
 }
 
@@ -47,11 +46,11 @@ func intit(in string) (out int) {
 }
 
 //a quick function to parse the timecode
-func parsetimecode(tc string) (start string, end string, pos bool) {
+func parsetimecode(tc string)(start string, end string, pos bool){
 	pos = false
 	split := strings.Split(tc, " ")
-	start = split[0]
-	end = split[2]
+ start = split[0]
+	 end = split[2]
 	if len(split) > 2 {
 		pos = true
 	}
@@ -59,7 +58,7 @@ func parsetimecode(tc string) (start string, end string, pos bool) {
 }
 
 //a function to parse the positioning part of a timecode
-func parsepos(tc string) (vertical string, line int, pos int, lpercent bool, align string, size int) {
+func parsepos(tc string)(vertical string, line int, pos int, lpercent bool, align string, size int) {
 	split := strings.Split(tc, " ")
 	for _, a := range split {
 		b := strings.Split(a, ":")
@@ -89,7 +88,7 @@ func parsepos(tc string) (vertical string, line int, pos int, lpercent bool, ali
 }
 
 //check line - checks line to see if it's a header, a note, or a subtitle
-func checkline(line []string) (out int) {
+func checkline(line []string)(out int) {
 	for _, i := range line {
 		if strings.Contains(i, "WEBVTT") {
 			return 0
@@ -105,7 +104,7 @@ func checkline(line []string) (out int) {
 //LoadWebVtt loads a WebVtt file
 func LoadWebVtt(v *WebVtt, filepath string) error {
 	f, err := os.Open(filepath)
-	if err != nil {
+	if err != nil{
 		return err
 	}
 	scanner := bufio.NewScanner(f)
@@ -113,7 +112,7 @@ func LoadWebVtt(v *WebVtt, filepath string) error {
 	var file [][]string
 	var lines []string
 	for scanner.Scan() {
-		if scanner.Text() != "" {
+		if scanner.Text() != ""   {
 			lines = append(lines, scanner.Text())
 		} else {
 			file = append(file, lines)
@@ -121,7 +120,6 @@ func LoadWebVtt(v *WebVtt, filepath string) error {
 		}
 	}
 	file = append(file, lines)
-	lines = nil
 	for _, i := range file {
 		parsed := checkline(i)
 		switch parsed {
@@ -144,12 +142,11 @@ func LoadWebVtt(v *WebVtt, filepath string) error {
 
 	}
 	defer f.Close()
-
 	return nil
 }
 
 //ParseWebVTT takes a filename and returns a WebVtt structure and any errors
-func ParseWebVtt(filename string) (*WebVtt, error) {
+func ParseWebVtt(filename string)(*WebVtt, error) {
 	v := &WebVtt{}
 	err := LoadWebVtt(v, filename)
 	if err != nil {
