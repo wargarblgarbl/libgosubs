@@ -10,7 +10,7 @@ type WebVtt struct {
 }
 
 //Subtitle is the struct that stores subtitles and notes for WebVtt.
-//The Note bool determins whether the Subtitle is actually a note or not.
+//The Note bool determines whether the Subtitle is actually a note or not.
 type Subtitle struct {
 	Note     bool
 	Cue      string

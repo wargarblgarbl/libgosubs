@@ -145,7 +145,7 @@ func LoadWebVtt(v *WebVtt, filepath string) error {
 	return nil
 }
 
-//ParseWebVTT takes a filename and returns a WebVtt structure and any errors
+//ParseWebVtt takes a filename and returns a WebVtt structure and any errors
 func ParseWebVtt(filename string)(*WebVtt, error) {
 	v := &WebVtt{}
 	err := LoadWebVtt(v, filename)
