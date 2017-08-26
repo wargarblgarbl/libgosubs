@@ -16,7 +16,7 @@ func CreateSubtitle(note bool, cue string, start string, end string, text []stri
 		Cue:    cue,
 		Start: start,
 		End:   end,
-		Position: pos, 
+		Position: pos,
 		Line:  text,
 	}
 }
@@ -31,12 +31,13 @@ func CreatePosition(vertical string, line int, pos int, lpercent bool,  align st
 		Size: size,
 	}
 }
-
+/*
 func CreateWebVtt(*[]Subtitle, *WebVtt) *WebVtt {
 	return &WebVtt{
 
 	}
 }
+*/
 
 /*HELPER FUNCTIONS*/
 func intit(in string) (out int) {
@@ -89,10 +90,9 @@ func parsepos(tc string)(vertical string, line int, pos int, lpercent bool, alig
 			align = b[1]
 		case "vertical":
 			vertical = b[1]
-			
 		}
 	}
-	return	
+	return
 }
 
 
@@ -115,33 +115,36 @@ func LoadWebVtt(v *WebVtt, filepath string) error {
 		return err
 	}
 	scanner := bufio.NewScanner(f)
+	var file [][]string
   	var lines []string
 	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
+		if scanner.Text() != "" {
+			lines = append(lines, scanner.Text())
+		} else {
+			file = append(file, lines)
+			lines = nil
+		}
 	}
-	split := strings.Split(strings.Join(lines, "\n"), "\n\n")
-	
-	for _, i := range split {
-		b := strings.Split(i, "\n")
-		parsed := checkline(b)
+	for _, i := range file {
+		parsed := checkline(i)
 		switch parsed {
 		case 0:
-			v.Header = strings.Join(b, "")
+			v.Header = strings.Join(i, "")
 		case 1:
 			var pos Position
-			v.Subtitle.Content = append(v.Subtitle.Content, *CreateSubtitle(true, "", "", "", b, pos))
+			v.Subtitle.Content = append(v.Subtitle.Content, *CreateSubtitle(true, "", "", "", i, pos))
 		case 2:
 			if err != nil {
 				return err
 			}
-			start, end, haspos := parsetimecode(b[1])
+			start, end, haspos := parsetimecode(i[1])
 			var pos Position
 			if haspos {
-				pos = *CreatePosition(parsepos(b[1]))
+				pos = *CreatePosition(parsepos(i[1]))
 			}
-			v.Subtitle.Content = append(v.Subtitle.Content, *CreateSubtitle(false, b[0], start, end, b[2:], pos))
+			v.Subtitle.Content = append(v.Subtitle.Content, *CreateSubtitle(false, i[0], start, end, i[2:], pos))
 		}
-		
+
 	}
 	fmt.Println(v)
 	return nil
