@@ -1,6 +1,7 @@
 package webvtt
+
 import (
-"testing"
+	"testing"
 )
 
 func TestLoad(t *testing.T) {

@@ -3,19 +3,18 @@ package srt
 import (
 	"bufio"
 	"os"
-	"strings"
 	"strconv"
+	"strings"
 )
 
-
-func parsetimecode(tc string)(start string, end string){
+func parsetimecode(tc string) (start string, end string) {
 	split := strings.Split(tc, " ")
 	start = split[0]
 	end = split[2]
 	return
 }
 
-func checkline(line []string)(isline bool) {
+func checkline(line []string) (isline bool) {
 	for _, i := range line {
 		if strings.Contains(i, "-->") {
 			isline = true
@@ -23,7 +22,6 @@ func checkline(line []string)(isline bool) {
 	}
 	return
 }
-
 
 //CreateSubtitle creates a subtitle object.
 func CreateSubtitle(id int, start string, end string, text []string) *Subtitle {
@@ -39,16 +37,16 @@ func CreateSubtitle(id int, start string, end string, text []string) *Subtitle {
 //It fixes the \ufeff problem that some parsers have.
 func LoadSrt(v *SubRip, filepath string) error {
 	f, err := os.Open(filepath)
-	if err != nil{
+	if err != nil {
 		return err
 	}
 	scanner := bufio.NewScanner(f)
 	var file [][]string
-  var lines []string
+	var lines []string
 
 	for scanner.Scan() {
 		line := scanner.Text()
-		if line != "" && line != "\ufeff"{
+		if line != "" && line != "\ufeff" {
 			lines = append(lines, line)
 		} else {
 			file = append(file, lines)
@@ -75,6 +73,7 @@ func LoadSrt(v *SubRip, filepath string) error {
 
 	return nil
 }
+
 //ParseSrt is the loader for srt files. Takes the path of the file being opened as the argument.
 func ParseSrt(filename string) (*SubRip, error) {
 	v := &SubRip{}
