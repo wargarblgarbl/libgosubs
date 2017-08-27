@@ -32,6 +32,8 @@ type Position struct {
 	Size        int
 }
 
+//Style struct contains the style header information
+// and a map of the contained values
 type Style struct {
 	Header string
 	Value  map[string]interface{}
