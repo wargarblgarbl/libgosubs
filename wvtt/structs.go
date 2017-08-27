@@ -16,6 +16,7 @@ type Subtitle struct {
 	Cue      string
 	Start    string
 	End      string
+	Haspos   bool
 	Position Position
 	Line     []string
 }
@@ -24,11 +25,12 @@ type Subtitle struct {
 type Position struct {
 	Vertical    string
 	Line        int
+	Posstring   string
 	Position    int
 	Linepercent bool
 	Align       string
 	Size        int
 }
 
-type style struct {
+type Style struct {
 }
