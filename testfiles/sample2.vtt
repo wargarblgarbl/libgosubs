@@ -5,6 +5,7 @@ STYLE
   background-image: linear-gradient(to bottom, dimgray, lightgray);
   color: papayawhip;
 }
+
 STYLE
 ::cue(b) {
   color: peachpuff;

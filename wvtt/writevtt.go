@@ -50,17 +50,24 @@ func WriteWebVtt(v *WebVtt, outpath string) error {
 	var outstyles []string
 	outout = append(outout, v.Header)
 	if v.Styles != nil {
-		for _, s := range v.Styles {
+		for z, s := range v.Styles {
 			outstyles = append(outstyles, "STYLE")
 			outstyles = append(outstyles, s.Header+"{")
-				if s.Value != nil {
+			if s.Value != nil {
 				for z, p := range s.Value {
-					line :=fmt.Sprint(z, ":", p, ";")
+					line := fmt.Sprint(z, ":", p, ";")
 					outstyles = append(outstyles, line)
 				}
 			}
-			outstyles = append(outstyles, "}")
+			if z == len(v.Styles)-1 {
+				outstyles = append(outstyles, "}")
+
+			} else {
+				outstyles = append(outstyles, "}\n")
+
+			}
 		}
+		fmt.Println(strings.Join(outstyles, "\n"))
 		outout = append(outout, strings.Join(outstyles, "\n"))
 		fmt.Println(outout)
 
