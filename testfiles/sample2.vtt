@@ -2,8 +2,8 @@ WEBVTT - Translation of that film I like
 
 STYLE
 ::cue {
-  background-image: linear-gradient(to bottom, dimgray, lightgray);
   color: papayawhip;
+  background-image: linear-gradient(to bottom, dimgray, lightgray);
 }
 
 STYLE
