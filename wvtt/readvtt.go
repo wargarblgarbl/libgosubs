@@ -2,7 +2,6 @@ package webvtt
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -43,7 +42,6 @@ func CreateStyle(header string, variables []string) *Style {
 	header = strings.Replace(header, "{", "", -1)
 	for _, h := range variables {
 		j := strings.Split(h, ":")
-		fmt.Println(j[0], strings.Replace(j[1], ";", "", -1))
 		s.Value[j[0]] = strings.Replace(j[1], ";", "", -1)
 	}
 	return &Style{

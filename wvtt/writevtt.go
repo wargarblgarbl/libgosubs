@@ -67,9 +67,7 @@ func WriteWebVtt(v *WebVtt, outpath string) error {
 
 			}
 		}
-		fmt.Println(strings.Join(outstyles, "\n"))
 		outout = append(outout, strings.Join(outstyles, "\n"))
-		fmt.Println(outout)
 
 	}
 	for _, z := range v.Subtitle.Content {
