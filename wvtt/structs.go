@@ -34,5 +34,5 @@ type Position struct {
 
 type Style struct {
 	Header string
-	Value map[string]interface{}
+	Value  map[string]interface{}
 }

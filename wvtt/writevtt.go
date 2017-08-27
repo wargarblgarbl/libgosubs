@@ -53,9 +53,9 @@ func WriteWebVtt(v *WebVtt, outpath string) error {
 		for _, s := range v.Styles {
 			outstyles = append(outstyles, "STYLE")
 			outstyles = append(outstyles, s.Header+"{")
-				if s.Value != nil {
+			if s.Value != nil {
 				for z, p := range s.Value {
-					line :=fmt.Sprint(z, ":", p, ";")
+					line := fmt.Sprint(z, ":", p, ";")
 					outstyles = append(outstyles, line)
 				}
 			}
