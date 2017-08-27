@@ -84,21 +84,21 @@ func Loadass(v *Ass, filepath string) error {
 		case "Video Position":
 			v.PGarbage.Body.VideoPos = intit(suffix)
 		case "Style":
-			v.Styles.Body = append(v.Styles.Body, *Createstyle(suffix))
+			v.Styles.Body = append(v.Styles.Body, *Parsestyle(suffix))
 		case "Dialogue":
-			v.Events.Body = append(v.Events.Body, *Createevent(suffix, prefix))
+			v.Events.Body = append(v.Events.Body, *Parseevent(suffix, prefix))
 		case "Comment":
-			v.Events.Body = append(v.Events.Body, *Createevent(suffix, prefix))
+			v.Events.Body = append(v.Events.Body, *Parseevent(suffix, prefix))
 		}
 	}
 	return nil
 }
 
-//Createevent creates the event, takes a full .ass line par the Comment/Dialogue portion, and the event type as an argument.
+//Parseevent creates the event from an event string split up on :. 
 //For example `Dialogue: 0,0:03:20.10,0:03:21.36,Default,,0,0,0,,` would parse to
 //in = `0,0:03:20.10,0:03:21.36,Default,,0,0,0,`
 //etype = Dialogue
-func Createevent(in string, etype string) *Event {
+func Parseevent(in string, etype string) *Event {
 	split := strings.Split(in, ",")
 	return &Event{
 		Format:  etype,
@@ -115,11 +115,45 @@ func Createevent(in string, etype string) *Event {
 	}
 }
 
-//Createstyle - creates a style. Takes a full .ass style line as an argument.
+
+//Createstyle creates tyle from a list of elements. 
+func Createstyle(name string, fontname string, fontsize int, pcolour string, scolour string, ocolour string, bcolour string, b int, i int, u int, so int, sx int, sy int, spacing int, angle int, bstyle int, outline int, shadow int, align int, marginl int, marginr int, marginv int, encoding int) *Style {
+	return &Style{
+		//Style is always static. 
+		Format:          "Style",
+		Name:            name,
+		Fontname:        fontname,
+		Fontsize:        fontsize,
+		PrimaryColour:   pcolour,
+		SecondaryColour: scolour,
+		OutlineColour:   ocolour,
+		Backcolour:      bcolour,
+		Bold:            b,
+		Italic:          i,
+		Underline:       u,
+		StrikeOut:       so,
+		ScaleX:          sx,
+		ScaleY:          sy,
+		Spacing:         spacing,
+		Angle:           angle,
+		BorderStyle:     bstyle,
+		Outline:         outline,
+		Shadow:          shadow,
+		Alignment:       align,
+		MarginL:         marginl,
+		MarginR:         marginr,
+		MarginV:         marginv,
+		Encoding:        encoding,
+	}
+}
+
+
+//Parsestyle - creates a style from a string. Takes a full .ass style line as an argument.
 //Similar to Createevent, except Styles don't have multiple Formats, so we only take the format-less style string.
-func Createstyle(in string) *Style {
+func Parsestyle(in string) *Style {
 	split := strings.Split(in, ",")
 	return &Style{
+		//Style is always static. 
 		Format:          "Style",
 		Name:            split[0],
 		Fontname:        split[1],
