@@ -1,5 +1,15 @@
 WEBVTT - Translation of that film I like
 
+STYLE
+::cue {
+  background-image: linear-gradient(to bottom, dimgray, lightgray);
+  color: papayawhip;
+}
+STYLE
+::cue(b) {
+  color: peachpuff;
+}
+
 NOTE
 This translation was done by Kyle so that
 some friends can watch it with their parents.

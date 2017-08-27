@@ -14,6 +14,17 @@ some friends can watch it with their parents.
 - Har en kopp te.
 - Det smakar som te.
 
+STYLE
+::cue {
+  background-image: linear-gradient(to bottom, dimgray, lightgray);
+  color: papayawhip;
+}
+
+STYLE
+::cue(b) {
+  color: peachpuff;
+}
+
 NOTE This last line may not translate well.
 
 3

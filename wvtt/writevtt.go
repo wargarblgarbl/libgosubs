@@ -47,7 +47,24 @@ func WriteWebVtt(v *WebVtt, outpath string) error {
 		return err
 	}
 	var outout []string
+	var outstyles []string
 	outout = append(outout, v.Header)
+	if v.Styles != nil {
+		for _, s := range v.Styles {
+			outstyles = append(outstyles, "STYLE")
+			outstyles = append(outstyles, s.Header+"{")
+				if s.Value != nil {
+				for z, p := range s.Value {
+					line :=fmt.Sprint(z, ":", p, ";")
+					outstyles = append(outstyles, line)
+				}
+			}
+			outstyles = append(outstyles, "}")
+		}
+		outout = append(outout, strings.Join(outstyles, "\n"))
+		fmt.Println(outout)
+
+	}
 	for _, z := range v.Subtitle.Content {
 		lines := strings.Join(z.Line, "\n")
 		if z.Note {
@@ -64,7 +81,6 @@ func WriteWebVtt(v *WebVtt, outpath string) error {
 		if z.Note == false && z.Cue == "" {
 			a := z.Start + " --> " + z.End + "\n" + lines
 			outout = append(outout, a)
-
 		}
 	}
 	fmt.Fprint(f, strings.Join(outout, "\n\n"))
