@@ -29,6 +29,8 @@ Available via Godoc
 |[![GoDoc](https://godoc.org/github.com/wargarblgarbl/libgosubs/ass?status.svg)](https://godoc.org/github.com/wargarblgarbl/libgosubs/ass) | ASS |
 |[![GoDoc](https://godoc.org/github.com/wargarblgarbl/libgosubs/srt?status.svg)](https://godoc.org/github.com/wargarblgarbl/libgosubs/srt) | SRT |
 |[![GoDoc](https://godoc.org/github.com/wargarblgarbl/libgosubs/ttml?status.svg)](https://godoc.org/github.com/wargarblgarbl/libgosubs/ttml) | TTML  |
+|[![GoDoc](https://godoc.org/github.com/wargarblgarbl/libgosubs/wvtt?status.svg)](https://godoc.org/github.com/wargarblgarbl/libgosubs/wvtt) | WVTT  |
+
 
 # Test Coverage
 
@@ -37,6 +39,7 @@ Available via Godoc
 |![cover.run go](https://cover.run/go/github.com/wargarblgarbl/libgosubs/ass.svg)| ASS|
 |![cover.run go](https://cover.run/go/github.com/wargarblgarbl/libgosubs/srt.svg)| SRT|
 |![cover.run go](https://cover.run/go/github.com/wargarblgarbl/libgosubs/ttml.svg)| TTML|
+|![cover.run go](https://cover.run/go/github.com/wargarblgarbl/libgosubs/wvtt.svg)| WVTT|
 
 # Other
  [![Go Report Card](https://goreportcard.com/badge/github.com/wargarblgarbl/libgosubs)](https://goreportcard.com/report/github.com/wargarblgarbl/libgosubs)
