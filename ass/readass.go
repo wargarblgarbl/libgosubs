@@ -94,7 +94,7 @@ func Loadass(v *Ass, filepath string) error {
 	return nil
 }
 
-//Parseevent creates the event from an event string split up on :. 
+//Parseevent creates the event from an event string split up on :.
 //For example `Dialogue: 0,0:03:20.10,0:03:21.36,Default,,0,0,0,,` would parse to
 //in = `0,0:03:20.10,0:03:21.36,Default,,0,0,0,`
 //etype = Dialogue
@@ -115,11 +115,27 @@ func Parseevent(in string, etype string) *Event {
 	}
 }
 
+//Createevent creates event from a lit of elements
+func Createevent(format string, layer int, start string, end string, style string, name string, marginl int, marginr int, marginv int, effect string, text string) *Event {
+	return &Event{
+		Format:  format,
+		Layer:   layer,
+		Start:   start,
+		End:     end,
+		Style:   style,
+		Name:    name,
+		MarginL: marginl,
+		MarginR: marginr,
+		MarginV: marginv,
+		Effect:  effect,
+		Text:    text,
+	}
+}
 
-//Createstyle creates tyle from a list of elements. 
+//Createstyle creates tyle from a list of elements.
 func Createstyle(name string, fontname string, fontsize int, pcolour string, scolour string, ocolour string, bcolour string, b int, i int, u int, so int, sx int, sy int, spacing int, angle int, bstyle int, outline int, shadow int, align int, marginl int, marginr int, marginv int, encoding int) *Style {
 	return &Style{
-		//Style is always static. 
+		//Style is always static.
 		Format:          "Style",
 		Name:            name,
 		Fontname:        fontname,
@@ -147,13 +163,12 @@ func Createstyle(name string, fontname string, fontsize int, pcolour string, sco
 	}
 }
 
-
 //Parsestyle - creates a style from a string. Takes a full .ass style line as an argument.
 //Similar to Createevent, except Styles don't have multiple Formats, so we only take the format-less style string.
 func Parsestyle(in string) *Style {
 	split := strings.Split(in, ",")
 	return &Style{
-		//Style is always static. 
+		//Style is always static.
 		Format:          "Style",
 		Name:            split[0],
 		Fontname:        split[1],
