@@ -23,7 +23,6 @@ func handletags(in []Tag) (out string) {
 	return
 }
 
-
 //WriteMdvd writes a .sub file from an Mdvd object
 func WriteMdvd(v *Mdvd, outpath string) error {
 
