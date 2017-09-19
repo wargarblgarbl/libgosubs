@@ -1,11 +1,10 @@
 package mdvd
 
 import (
-	"testing"
 	"fmt"
 	"github.com/google/go-cmp/cmp"
+	"testing"
 )
-
 
 func TestLoadAndWrite(t *testing.T) {
 	test, err := ParseMdvd("../testfiles/sample.sub")
@@ -28,4 +27,3 @@ func TestLoadAndWrite(t *testing.T) {
 	}
 
 }
-

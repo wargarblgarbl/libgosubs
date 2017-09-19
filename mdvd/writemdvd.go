@@ -6,14 +6,15 @@ import (
 	"strconv"
 	"strings"
 )
+
 //helper function
 
-func stringintsf(in int64)(out string){
+func stringintsf(in int64) (out string) {
 	out = strconv.FormatInt(in, 10)
 	return
 }
 
-func handletags(in []Tag)(out string){
+func handletags(in []Tag) (out string) {
 	var outout []string
 	for _, i := range in {
 		outout = append(outout, "{"+i.Type+":"+i.Value+"}")
@@ -22,6 +23,8 @@ func handletags(in []Tag)(out string){
 	return
 }
 
+
+//WriteMdvd writes a .sub file from an Mdvd object
 func WriteMdvd(v *Mdvd, outpath string) error {
 
 	f, err := os.Create(outpath)
@@ -43,8 +46,8 @@ func WriteMdvd(v *Mdvd, outpath string) error {
 			anevent = append(anevent, z.Text)
 		}
 		outout = append(outout, strings.Join(anevent, ""))
-			
-		}
+
+	}
 	fmt.Fprintf(f, strings.Join(outout, "\n"))
 	return nil
 }
