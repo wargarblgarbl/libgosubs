@@ -5,6 +5,7 @@ Golang library to read and write subtitles in the following formats
 - SRT
 - TTML v1.0 - This is based on the spec provided by Netflix in their documentation
 - WebVTT experimental support
+- MicroDVD experimental support
 # notes
 
 TTML is somewhat complex to implement in Go due to the way that Go handles XML namespaces. Until this issue is fixed, two different structs for reading and writing, as well as a lengthy conversion function will probably be necessary. See the test file for a sample (and probably poor) implementation.
@@ -14,10 +15,7 @@ TTML is somewhat complex to implement in Go due to the way that Go handles XML n
 - Clean up the ASSv4 format, specifically do something about the way headers are handled
 
 # updates
-- v0.5 released for ASS, SRT, and TTML
-- experimental WebVTT functionality implemented
-- SRT read functionality cleaned up.
-
+- Experimental MicroDVD format support added
 
 ## libgosubs project garbage
 
