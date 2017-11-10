@@ -34,11 +34,11 @@ Available via Godoc
 
 | Coverage | Format |
 | ------------- | ------------- |
-|![cover.run go](https://cover.run/go/github.com/wargarblgarbl/libgosubs/ass.svg)| ASS|
-|![cover.run go](https://cover.run/go/github.com/wargarblgarbl/libgosubs/srt.svg)| SRT|
-|![cover.run go](https://cover.run/go/github.com/wargarblgarbl/libgosubs/ttml.svg)| TTML|
-|![cover.run go](https://cover.run/go/github.com/wargarblgarbl/libgosubs/wvtt.svg)| WVTT|
-|![cover.run go](https://cover.run/go/github.com/wargarblgarbl/libgosubs/mdvd.svg)| MDVD|
+|![gocover.io go](https://gocover.io/_badge/github.com/wargarblgarbl/libgosubs/ass)| ASS|
+|![gocover.io go](https://gocover.io/_badge/github.com/wargarblgarbl/libgosubs/srt)| SRT|
+|![gocover.io go](https://gocover.io/_badge/github.com/wargarblgarbl/libgosubs/ttml)| TTML|
+|![gocover.io go](https://gocover.io/_badge/github.com/wargarblgarbl/libgosubs/wvtt)| WVTT|
+|![gocover.io go](https://gocover.io/_badge/github.com/wargarblgarbl/libgosubs/mdvd)| MDVD|
 
 ### Other
  [![Go Report Card](https://goreportcard.com/badge/github.com/wargarblgarbl/libgosubs)](https://goreportcard.com/report/github.com/wargarblgarbl/libgosubs)
