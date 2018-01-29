@@ -7,7 +7,7 @@ jobs:
     docker:
       # specify the version
       - image: circleci/golang:1.8
-      
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -17,11 +17,26 @@ jobs:
     #### expecting it in the form of
     ####   /go/src/github.com/circleci/go-tool
     ####   /go/src/bitbucket.org/circleci/go-tool
-    working_directory: /go/src/github.com/wargarblgarbl/libgotimestamp
+    working_directory: /go/src/github.com/wargarblgarbl/libgosubs
     steps:
       - checkout
-
+    working_directory: /go/src/github.com/wargarblgarbl/libgosubs/ass
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
-      - run: go test -v 
-
+      - run: go test -v
+    working_directory: /go/src/github.com/wargarblgarbl/libgosubs/mdvd
+      # specify any bash command here prefixed with `run: `
+      - run: go get -v -t -d ./...
+      - run: go test -v
+    working_directory: /go/src/github.com/wargarblgarbl/libgosubs/srt
+      # specify any bash command here prefixed with `run: `
+      - run: go get -v -t -d ./...
+      - run: go test -v
+    working_directory: /go/src/github.com/wargarblgarbl/libgosubs/ttml
+      # specify any bash command here prefixed with `run: `
+      - run: go get -v -t -d ./...
+      - run: go test -v
+      working_directory: /go/src/github.com/wargarblgarbl/libgosubs/wvtt
+        # specify any bash command here prefixed with `run: `
+        - run: go get -v -t -d ./...
+        - run: go test -v
