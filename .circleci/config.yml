@@ -20,23 +20,5 @@ jobs:
     working_directory: /go/src/github.com/wargarblgarbl/libgosubs
     steps:
       - checkout
-    working_directory: /go/src/github.com/wargarblgarbl/libgosubs/ass
       # specify any bash command here prefixed with `run: `
-      - run: go get -v -t -d ./...
-      - run: go test -v
-    working_directory: /go/src/github.com/wargarblgarbl/libgosubs/mdvd
-      # specify any bash command here prefixed with `run: `
-      - run: go get -v -t -d ./...
-      - run: go test -v
-    working_directory: /go/src/github.com/wargarblgarbl/libgosubs/srt
-      # specify any bash command here prefixed with `run: `
-      - run: go get -v -t -d ./...
-      - run: go test -v
-    working_directory: /go/src/github.com/wargarblgarbl/libgosubs/ttml
-      # specify any bash command here prefixed with `run: `
-      - run: go get -v -t -d ./...
-      - run: go test -v
-      working_directory: /go/src/github.com/wargarblgarbl/libgosubs/wvtt
-        # specify any bash command here prefixed with `run: `
-        - run: go get -v -t -d ./...
-        - run: go test -v
+      - run: bash tf.sh
