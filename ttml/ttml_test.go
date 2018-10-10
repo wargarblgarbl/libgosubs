@@ -55,6 +55,9 @@ func convertstruct(i *Tt) *WTt {
 
 }
 
+
+
+
 //Test our testing functions
 func TestAlllocal(t *testing.T) {
 	a := &Tt{}
@@ -65,6 +68,7 @@ func TestAlllocal(t *testing.T) {
 	f := &Wregion{}
 	g := &Wsubtitle{}
 	h := &Wstyle{}
+
 
 	if cmp.Equal(convertstruct(a), b) {
 		//t.Errorf("convertstruct test function failed")
