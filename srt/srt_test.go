@@ -19,7 +19,7 @@ func TestSRTIDs(t *testing.T) {
 }
 
 func TestLoadAndWrite(t *testing.T) {
-	test, err := ParseSrt("../testfiles/sample.srt")
+	test, err := ParseSrt("../testfiles/test2.srt")
 	if err != nil {
 		t.Errorf("Unexpected error parsing .srt")
 	}

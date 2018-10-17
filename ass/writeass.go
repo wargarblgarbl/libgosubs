@@ -9,10 +9,6 @@ import (
 
 //WriteAss takes an Ass object and the path to where to write the file
 
-
-
-
-
 func WriteAss(v *Ass, outpath string) error {
 
 	f, err := os.Create(outpath)
@@ -20,8 +16,6 @@ func WriteAss(v *Ass, outpath string) error {
 		return (err)
 	}
 	var outout []string
-
-
 
 	outout = append(outout, v.ScriptInfo.Header)
 	outout = append(outout, "Title: "+v.ScriptInfo.Body.Title)
