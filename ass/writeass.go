@@ -8,13 +8,15 @@ import (
 )
 
 //WriteAss takes an Ass object and the path to where to write the file
+
 func WriteAss(v *Ass, outpath string) error {
+
 	f, err := os.Create(outpath)
 	if err != nil {
 		return (err)
 	}
 	var outout []string
-	// Write header
+
 	outout = append(outout, v.ScriptInfo.Header)
 	outout = append(outout, "Title: "+v.ScriptInfo.Body.Title)
 	outout = append(outout, "ScriptType: "+v.ScriptInfo.Body.ScriptType)
@@ -37,7 +39,6 @@ func WriteAss(v *Ass, outpath string) error {
 
 	//Super ugly solution for merging entire object as deliniated by a string. There has to be a way to do this in a sane, programmatic
 	// and idiomatic manner.
-
 	for _, z := range v.Styles.Body {
 
 		/*
