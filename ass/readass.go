@@ -133,7 +133,7 @@ func Createevent(format string, layer int, start string, end string, style strin
 }
 
 //Createstyle creates tyle from a list of elements.
-func Createstyle(name string, fontname string, fontsize int, pcolour string, scolour string, ocolour string, bcolour string, b int, i int, u int, so int, sx int, sy int, spacing int, angle int, bstyle int, outline int, shadow int, align int, marginl int, marginr int, marginv int, encoding int) *Style {
+func Createstyle(name string, fontname string, fontsize float64, pcolour string, scolour string, ocolour string, bcolour string, b int, i int, u int, so int, sx float64, sy float64, spacing float64, angle float64, bstyle int, outline float64, shadow float64, align int, marginl int, marginr int, marginv int, encoding int) *Style {
 	return &Style{
 		//Style is always static.
 		Format:          "Style",
@@ -172,7 +172,7 @@ func Parsestyle(in string) *Style {
 		Format:          "Style",
 		Name:            split[0],
 		Fontname:        split[1],
-		Fontsize:        intit(split[2]),
+		Fontsize:        floatit(split[2]),
 		PrimaryColour:   split[3],
 		SecondaryColour: split[4],
 		OutlineColour:   split[5],
@@ -181,13 +181,13 @@ func Parsestyle(in string) *Style {
 		Italic:          intit(split[8]),
 		Underline:       intit(split[9]),
 		StrikeOut:       intit(split[10]),
-		ScaleX:          intit(split[11]),
-		ScaleY:          intit(split[12]),
-		Spacing:         intit(split[13]),
-		Angle:           intit(split[14]),
+		ScaleX:          floatit(split[11]),
+		ScaleY:          floatit(split[12]),
+		Spacing:         floatit(split[13]),
+		Angle:           floatit(split[14]),
 		BorderStyle:     intit(split[15]),
-		Outline:         intit(split[16]),
-		Shadow:          intit(split[17]),
+		Outline:         floatit(split[16]),
+		Shadow:          floatit(split[17]),
 		Alignment:       intit(split[18]),
 		MarginL:         intit(split[19]),
 		MarginR:         intit(split[20]),

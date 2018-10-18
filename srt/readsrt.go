@@ -2,7 +2,6 @@ package srt
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -48,13 +47,11 @@ func LoadSrt(v *SubRip, filepath string) error {
 	for scanner.Scan() {
 		line := scanner.Text()
 		if strings.HasPrefix(line, "\ufeff") {
-			fmt.Println("NotOk")
 			line = strings.Replace(line, "\ufeff", "", -1)
 			line = strings.Replace(line, "\xef\xbb\xbf", "", -1)
 
 		}
 		if strings.HasPrefix(line, "\xef\xbb\xbf") {
-			fmt.Println("OK")
 			line = strings.Replace(line, "\ufeff", "", -1)
 			line = strings.Replace(line, "\xef\xbb\xbf", "", -1)
 		}
