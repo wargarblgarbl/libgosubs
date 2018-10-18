@@ -57,7 +57,7 @@ type Style struct {
 	Format          string
 	Name            string
 	Fontname        string
-	Fontsize        int
+	Fontsize        float64
 	PrimaryColour   string
 	SecondaryColour string
 	OutlineColour   string
@@ -66,13 +66,13 @@ type Style struct {
 	Italic          int
 	Underline       int
 	StrikeOut       int
-	ScaleX          int
-	ScaleY          int
-	Spacing         int
-	Angle           int
+	ScaleX          float64
+	ScaleY          float64
+	Spacing         float64
+	Angle           float64
 	BorderStyle     int
-	Outline         int
-	Shadow          int
+	Outline         float64
+	Shadow          float64
 	Alignment       int
 	MarginL         int
 	MarginR         int

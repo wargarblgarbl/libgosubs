@@ -7,6 +7,12 @@ import (
 	"strings"
 )
 
+func textfloat(in float64) (out string) {
+	//f, err := strconv.ParseFloat(in, 64)
+	out = strconv.FormatFloat(in, 'g', 3, 64)
+	return
+}
+
 //WriteAss takes an Ass object and the path to where to write the file
 
 func WriteAss(v *Ass, outpath string) error {
@@ -51,7 +57,7 @@ func WriteAss(v *Ass, outpath string) error {
 		//astyle = append(astyle, z.Format)
 		astyle = append(astyle, z.Name)
 		astyle = append(astyle, z.Fontname)
-		astyle = append(astyle, strconv.Itoa(z.Fontsize))
+		astyle = append(astyle, textfloat(z.Fontsize))
 		astyle = append(astyle, z.PrimaryColour)
 		astyle = append(astyle, z.SecondaryColour)
 		astyle = append(astyle, z.OutlineColour)
@@ -60,13 +66,13 @@ func WriteAss(v *Ass, outpath string) error {
 		astyle = append(astyle, strconv.Itoa(z.Italic))
 		astyle = append(astyle, strconv.Itoa(z.Underline))
 		astyle = append(astyle, strconv.Itoa(z.StrikeOut))
-		astyle = append(astyle, strconv.Itoa(z.ScaleX))
-		astyle = append(astyle, strconv.Itoa(z.ScaleY))
-		astyle = append(astyle, strconv.Itoa(z.Spacing))
-		astyle = append(astyle, strconv.Itoa(z.Angle))
+		astyle = append(astyle, textfloat(z.ScaleX))
+		astyle = append(astyle, textfloat(z.ScaleY))
+		astyle = append(astyle, textfloat(z.Spacing))
+		astyle = append(astyle, textfloat(z.Angle))
 		astyle = append(astyle, strconv.Itoa(z.BorderStyle))
-		astyle = append(astyle, strconv.Itoa(z.Outline))
-		astyle = append(astyle, strconv.Itoa(z.Shadow))
+		astyle = append(astyle, textfloat(z.Outline))
+		astyle = append(astyle, textfloat(z.Shadow))
 		astyle = append(astyle, strconv.Itoa(z.Alignment))
 		astyle = append(astyle, strconv.Itoa(z.MarginL))
 		astyle = append(astyle, strconv.Itoa(z.MarginR))
