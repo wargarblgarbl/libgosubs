@@ -40,7 +40,7 @@ type WTt struct {
 type Wregion struct {
 	XMLID           string `xml:"xml:id,attr"`
 	TtsDisplayAlign string `xml:"tts:displayAlign,attr"`
-	TtsExtent       string `xml:"tts:extend,attr"`
+	TtsExtent       string `xml:"tts:extent,attr"`
 	TtsOrigin       string `xml:"tts:origin,attr"`
 }
 

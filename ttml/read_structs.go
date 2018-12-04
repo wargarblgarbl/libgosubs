@@ -47,7 +47,7 @@ type Tt struct {
 type Region struct {
 	XMLID           string `xml:"id,attr"`
 	TtsDisplayAlign string `xml:"displayAlign,attr"`
-	TtsExtent       string `xml:"extend,attr"`
+	TtsExtent       string `xml:"extent,attr"`
 	TtsOrigin       string `xml:"origin,attr"`
 }
 
